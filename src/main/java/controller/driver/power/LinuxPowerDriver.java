@@ -1,5 +1,7 @@
 package controller.driver.power;
 
+import model.PowerState;
+
 import java.io.IOException;
 import java.nio.file.Paths;
 
@@ -7,11 +9,13 @@ import static java.lang.Integer.*;
 import static java.nio.file.Files.exists;
 import static java.nio.file.Files.readAllLines;
 
-public class LinuxPowerDriver extends GenericPowerDriver {
-
-    LinuxPowerDriver() throws UnsupportedOperationException {
+class LinuxPowerDriver implements GenericPowerDriver {
+    public void Initialize() throws UnsupportedOperationException {
         if (!exists(Paths.get("/sys/class/power_supply")))
             throw new UnsupportedOperationException("Interfaces não disponiveis para consulta de nivel de energia");
+    }
+    LinuxPowerDriver() throws UnsupportedOperationException {
+        this.Initialize();
     }
 
     public PowerState getState() {

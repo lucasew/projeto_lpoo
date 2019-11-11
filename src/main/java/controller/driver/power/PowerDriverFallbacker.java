@@ -8,14 +8,20 @@ public class PowerDriverFallbacker {
     private static List<Class<? extends GenericPowerDriver>> pretendents =
             new ArrayList<Class<? extends GenericPowerDriver>>() {{
                 add(LinuxPowerDriver.class);
+                add(MockedPowerDriver.class);
             }};
+    private static GenericPowerDriver backend = null;
 
     public static GenericPowerDriver getDriver() {
+        if (PowerDriverFallbacker.backend != null) {
+            return PowerDriverFallbacker.backend;
+        }
         for (Class<? extends GenericPowerDriver> pretendent : pretendents) {
             try {
-                return pretendent.newInstance();
+                PowerDriverFallbacker.backend = pretendent.newInstance();
+                return PowerDriverFallbacker.backend;
             } catch (IllegalAccessException | InstantiationException | UnsupportedOperationException e) {
-                e.printStackTrace();
+                System.out.println(String.format("%s não pode ser utilizado neste contexto por não ser suportado.", pretendent.toString()));
                 continue;
             }
         }

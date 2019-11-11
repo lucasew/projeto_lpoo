@@ -1,7 +1,5 @@
 package model;
 
-import controller.driver.power.PowerState;
-
 import javax.persistence.*;
 import java.util.Calendar;
 
@@ -12,6 +10,9 @@ public class BatteryState implements Comparable {
 
     @Column
     private int level;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private Timestamp timestamp;
 
     public PowerState getState() {
         return state;
@@ -29,18 +30,6 @@ public class BatteryState implements Comparable {
         this.level = level;
     }
 
-    public Calendar getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Calendar timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Calendar timestamp;
-
-
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id private long id;
 
@@ -50,6 +39,14 @@ public class BatteryState implements Comparable {
 
     public long getId() {
         return id;
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
 
     @Override

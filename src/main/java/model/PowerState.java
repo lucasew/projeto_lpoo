@@ -1,4 +1,4 @@
-package controller.driver.power;
+package model;
 
 public enum PowerState {
     AC, // Na tomada, sem bateria
