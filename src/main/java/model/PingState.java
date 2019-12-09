@@ -14,7 +14,7 @@ import javax.persistence.*;
  * @author a2049031
  */
 @Entity
-public class PingState {
+public class PingState extends SystemState {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id private long id;
 

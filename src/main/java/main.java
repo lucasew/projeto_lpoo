@@ -1,4 +1,8 @@
 import controller.DatabaseController;
+import controller.daemon.CaptureDaemon;
+import controller.daemon.task.PingTask;
+import controller.daemon.task.PowerTask;
+import controller.daemon.task.Task;
 import controller.driver.ping.GenericPingDriver;
 import controller.driver.ping.PingDriverFallbacker;
 import controller.driver.power.GenericPowerDriver;
@@ -14,46 +18,15 @@ import org.hibernate.Transaction;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Timer;
 
 public class main {
-    public static void main(String[] args) throws InterruptedException, IOException {
-        EntityManager manager = DatabaseController.getInstance();
-        GenericPowerDriver powDriver  = PowerDriverFallbacker.getDriver();
-        PowerGather powGather = new PowerGather(powDriver);
-        GenericPingDriver pingDriver = PingDriverFallbacker.getDriver();
-        PingGather pingGather = new PingGather(pingDriver);
-        Thread th = Thread.currentThread();
-        EntityTransaction trans = manager.getTransaction();
-        Timestamp timestamp = new Timestamp();
-        BatteryState lastPowState = powGather.getState(timestamp);
-        PingState lastPingState = pingGather.getState(timestamp);
-        while (true) {
-            th.sleep(1000);
-            boolean isPersistTimestamp = false;
-            timestamp = new Timestamp();
-            BatteryState powState = powGather.getState(timestamp);
-            PingState pingState = pingGather.getState(timestamp);
-            trans.begin();
-            if (lastPowState.compareTo(powState) != 0) {
-                manager.persist(powState);
-                isPersistTimestamp = true;
-                out.println("Persist power");
-            }
-            if (lastPingState.compareTo(pingState) != 0) {
-                manager.persist(pingState);
-                isPersistTimestamp = true;
-                out.println("Persist ping");
-            }
-            if (isPersistTimestamp) {
-                manager.persist(timestamp);
-                out.println("Persist timestamp");
-            }
-            manager.flush();
-            trans.commit();
-            lastPowState = powState;
-            lastPingState = pingState;
-            out.println("Fim de loop");
-        }
+    public static void main(String[] args) {
+        ArrayList<Task> tasks = new ArrayList<Task>();
+        tasks.add(new PingTask("google.com"));
+        tasks.add(new PowerTask());
+        Thread th = new Thread(new CaptureDaemon(1000, tasks));
+        th.start();
     }
 }

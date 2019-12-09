@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Calendar;
 
 @Entity
-public class BatteryState implements Comparable {
+public class BatteryState extends SystemState implements Comparable {
     @Enumerated(EnumType.STRING)
     private PowerState state;
 

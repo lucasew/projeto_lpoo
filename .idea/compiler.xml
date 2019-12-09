@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="resource_dashboard" />
+        <module name="projeto_lpoo" />
       </profile>
     </annotationProcessing>
   </component>
