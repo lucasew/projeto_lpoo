@@ -2,25 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eebb3947-90ac-491e-821a-d7506fdfd790" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/chart/PingChart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/reporter/Reporter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/daemon/CaptureDaemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/facade/CaptureDaemon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/daemon/task/BatteryTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/reporter/BatteryReporter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/daemon/task/PingTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/reporter/PingReporter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/daemon/task/Task.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/driver/power/LinuxPowerDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/driver/power/LinuxPowerDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/extractor/BatteryStateExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/extractor/BatteryStateExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/extractor/PingStateExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/extractor/PingStateExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gather/PingGather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gather/PingGather.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gather/PowerGather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gather/PowerGather.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/BatteryState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/BatteryState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/PingState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PingState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Timestamp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/TimestampState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/UIDashboard.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/UIDashboard.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/UIDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/UIDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/chart/BatteryChart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/chart/BatteryChart.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,6 +92,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PingChart" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="controller.chart.PingChart" />
+      <module name="projeto_lpoo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.chart.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -122,6 +118,7 @@
       <list>
         <item itemvalue="Application.main" />
         <item itemvalue="Application.BatteryChart" />
+        <item itemvalue="Application.PingChart" />
       </list>
     </recent_temporary>
   </component>
@@ -154,7 +151,7 @@
       <workItem from="1573497805872" duration="3709000" />
       <workItem from="1575915085164" duration="3674000" />
       <workItem from="1575973096424" duration="3042000" />
-      <workItem from="1575994271459" duration="10271000" />
+      <workItem from="1575994271459" duration="10914000" />
     </task>
     <servers />
   </component>
@@ -204,30 +201,30 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="383" y="41" key="#main/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575917601828" />
-    <state width="1320" height="192" key="GridCell.Tab.0.bottom" timestamp="1576005358595">
+    <state width="1320" height="192" key="GridCell.Tab.0.bottom" timestamp="1576006342754">
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
     <state width="1320" height="192" key="GridCell.Tab.0.bottom/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575918761382" />
     <state width="1320" height="192" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1575984768612" />
-    <state width="1320" height="192" key="GridCell.Tab.0.bottom/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576005358595" />
-    <state width="1320" height="192" key="GridCell.Tab.0.center" timestamp="1576005358595">
+    <state width="1320" height="192" key="GridCell.Tab.0.bottom/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576006342754" />
+    <state width="1320" height="192" key="GridCell.Tab.0.center" timestamp="1576006342753">
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
     <state width="1320" height="192" key="GridCell.Tab.0.center/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575918761381" />
     <state width="1320" height="192" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1575984768611" />
-    <state width="1320" height="192" key="GridCell.Tab.0.center/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576005358595" />
-    <state width="1320" height="192" key="GridCell.Tab.0.left" timestamp="1576005358595">
+    <state width="1320" height="192" key="GridCell.Tab.0.center/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576006342753" />
+    <state width="1320" height="192" key="GridCell.Tab.0.left" timestamp="1576006342753">
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
     <state width="1320" height="192" key="GridCell.Tab.0.left/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575918761381" />
     <state width="1320" height="192" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1575984768610" />
-    <state width="1320" height="192" key="GridCell.Tab.0.left/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576005358595" />
-    <state width="1320" height="192" key="GridCell.Tab.0.right" timestamp="1576005358595">
+    <state width="1320" height="192" key="GridCell.Tab.0.left/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576006342753" />
+    <state width="1320" height="192" key="GridCell.Tab.0.right" timestamp="1576006342754">
       <screen x="1366" y="0" width="1366" height="768" />
     </state>
     <state width="1320" height="192" key="GridCell.Tab.0.right/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575918761382" />
     <state width="1320" height="192" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1575984768611" />
-    <state width="1320" height="192" key="GridCell.Tab.0.right/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576005358595" />
+    <state width="1320" height="192" key="GridCell.Tab.0.right/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576006342754" />
     <state x="1728" y="27" key="com.intellij.ide.util.TipDialog" timestamp="1575994273182">
       <screen x="1366" y="0" width="1366" height="768" />
     </state>

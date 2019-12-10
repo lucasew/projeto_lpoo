@@ -7,6 +7,7 @@ package controller.chart;
 
 import controller.DatabaseController;
 import model.BatteryState;
+import model.PowerState;
 import model.TimestampState;
 import org.hibernate.metamodel.relational.Database;
 import org.jfree.data.xy.XYSeries;
@@ -38,6 +39,7 @@ public class BatteryChart extends CommonChart {
     @Override
     public XYSeriesCollection buildDataset() {
         final XYSeries series = new XYSeries("Bateria");
+        final XYSeries estado = new XYSeries("Está carregando?");
         for (TimestampState este : this.amostras) {
             Query query = DatabaseController.getInstance()
                     .createQuery("select b from BatteryState b where id = :id");
@@ -47,10 +49,18 @@ public class BatteryChart extends CommonChart {
                 System.out.println(".");
                 continue;
             }
-            series.add(este.getTimestamp().getTimeInMillis(), b.get(0).getLevel());
+            long timestamp = este.getTimestamp().getTimeInMillis()/1000;
+            BatteryState state = b.get(0);
+            if (state.getState() == PowerState.Discharging) {
+                estado.add(timestamp, 0);
+            } else {
+                estado.add(timestamp, 100);
+            }
+            series.add(timestamp, state.getLevel());
         }
         final XYSeriesCollection dataset = new XYSeriesCollection();
         dataset.addSeries(series);
+        dataset.addSeries(estado);
         return dataset;
 
     }
