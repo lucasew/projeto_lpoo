@@ -6,6 +6,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.*;
 
 /**
@@ -17,8 +18,10 @@ public class PingState implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id private long id;
 
-    public PingState(Timestamp timestamp, Integer latency) {
-        this.timestamp = timestamp;
+    @Column
+    private boolean isValido = true;
+
+    public PingState(Integer latency, boolean isValido) {
         this.latency = latency;
     }
 
@@ -26,7 +29,7 @@ public class PingState implements Serializable {
     }
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    private Timestamp timestamp;
+    private TimestampState timestamp;
 
     private Integer latency;
 
@@ -38,11 +41,11 @@ public class PingState implements Serializable {
         this.id = id;
     }
 
-    public Timestamp getTimestamp() {
+    public TimestampState getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(TimestampState timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -54,11 +57,19 @@ public class PingState implements Serializable {
         this.latency = latency;
     }
 
-    public int compareTo(Object o) {
-        PingState pingState = (PingState)o;
-        if (this.latency == null || pingState.latency == null ) {
-            return this.latency == null ^ pingState.latency == null ? 1 : 0;
-        }
-        return this.latency.compareTo(pingState.latency);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PingState pingState = (PingState) o;
+        return latency.equals(pingState.latency);
+    }
+
+    public boolean isValido() {
+        return isValido;
+    }
+
+    public void setValido(boolean valido) {
+        isValido = valido;
     }
 }

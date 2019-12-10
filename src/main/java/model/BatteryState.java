@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
@@ -12,7 +13,7 @@ public class BatteryState implements Serializable {
     private int level;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    private Timestamp timestamp;
+    private TimestampState timestamp;
 
     public PowerState getState() {
         return state;
@@ -41,11 +42,25 @@ public class BatteryState implements Serializable {
         return id;
     }
 
-    public Timestamp getTimestamp() {
+    public TimestampState getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(TimestampState timestamp) {
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BatteryState that = (BatteryState) o;
+        return level == that.level &&
+                state == that.state;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(state, level, timestamp, id);
     }
 }

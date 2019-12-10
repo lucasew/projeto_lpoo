@@ -5,8 +5,10 @@
  */
 package view;
 
-import controller.daemon.task.PingTask;
-import controller.daemon.task.BatteryTask;
+import controller.chart.BatteryChart;
+import controller.chart.PingChart;
+import controller.reporter.PingReporter;
+import controller.reporter.BatteryReporter;
 import controller.extractor.BatteryStateExtractor;
 import controller.extractor.PingStateExtractor;
 
@@ -16,24 +18,22 @@ import controller.extractor.PingStateExtractor;
  */
 public class UIDashboard extends javax.swing.JFrame implements Runnable {
 
-    private final PingTask pingTask;
-    private final BatteryTask powerTask;
-    private final Thread btnDashboardBatDaemon;
-    private final Thread btnDashboardPingDaemon;
-    
-    public UIDashboard(PingTask pingTask, BatteryTask powerTask) {
+    private final PingReporter pingTask;
+    private final BatteryReporter powerTask;
+
+    public UIDashboard(PingReporter pingTask, BatteryReporter powerTask) {
         this.pingTask = pingTask;
         this.powerTask = powerTask;
         initComponents();
         this.setTitle("Dashboard - Monitor de Recursos");
-        this.btnDashboardPing.setExtractor(new PingStateExtractor(pingTask, 1000));
-        this.btnDashboardBat.setExtractor(new BatteryStateExtractor(powerTask));
-        btnDashboardBatDaemon = new Thread(btnDashboardBat);
-        btnDashboardPingDaemon = new Thread(btnDashboardPing);
     }
 
     @Override
     public void run() {
+        this.btnDashboardPing.setExtractor(new PingStateExtractor(pingTask, 1000));
+        this.btnDashboardBat.setExtractor(new BatteryStateExtractor(powerTask));
+        Thread btnDashboardBatDaemon = new Thread(btnDashboardBat);
+        Thread btnDashboardPingDaemon = new Thread(btnDashboardPing);
         btnDashboardBatDaemon.start();
         btnDashboardPingDaemon.start();
     }
@@ -52,8 +52,18 @@ public class UIDashboard extends javax.swing.JFrame implements Runnable {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnDashboardPing.setText("dashboardButton1");
+        btnDashboardPing.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDashboardPingActionPerformed(evt);
+            }
+        });
 
         btnDashboardBat.setText("dashboardButton2");
+        btnDashboardBat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDashboardBatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,6 +87,20 @@ public class UIDashboard extends javax.swing.JFrame implements Runnable {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDashboardPingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardPingActionPerformed
+        PingChart chart = new PingChart();
+        chart.setLocationRelativeTo(null);
+        chart.setSize(800, 600);
+        chart.setVisible(true);
+    }//GEN-LAST:event_btnDashboardPingActionPerformed
+
+    private void btnDashboardBatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardBatActionPerformed
+        BatteryChart chart = new BatteryChart();
+        chart.setLocationRelativeTo(null);
+        chart.setSize(800, 600);
+        chart.setVisible(true);
+    }//GEN-LAST:event_btnDashboardBatActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private view.components.DashboardButton btnDashboardBat;

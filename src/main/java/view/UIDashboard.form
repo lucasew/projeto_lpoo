@@ -49,11 +49,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="dashboardButton1"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDashboardPingActionPerformed"/>
+      </Events>
     </Component>
     <Component class="view.components.DashboardButton" name="btnDashboardBat">
       <Properties>
         <Property name="text" type="java.lang.String" value="dashboardButton2"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDashboardBatActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

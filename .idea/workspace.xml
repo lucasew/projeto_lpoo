@@ -2,18 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eebb3947-90ac-491e-821a-d7506fdfd790" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/projeto_lpoo.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/daemon/CaptureDaemon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/daemon/task/PingTask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/daemon/task/PowerTask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/daemon/task/Task.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/SystemState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/chart/PingChart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/reporter/Reporter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/daemon/CaptureDaemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/facade/CaptureDaemon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/daemon/task/BatteryTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/reporter/BatteryReporter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/daemon/task/PingTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/reporter/PingReporter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/daemon/task/Task.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/driver/power/LinuxPowerDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/driver/power/LinuxPowerDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/extractor/BatteryStateExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/extractor/BatteryStateExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/extractor/PingStateExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/extractor/PingStateExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gather/PingGather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gather/PingGather.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gather/PowerGather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gather/PowerGather.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/BatteryState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/BatteryState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/PingState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PingState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Timestamp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/TimestampState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/UIDashboard.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/UIDashboard.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/UIDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/UIDashboard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,20 +79,36 @@
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.uml" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="controller.driver.ping" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="controller.task" />
+      <recent name="controller.daemon" />
       <recent name="controller.driver" />
     </key>
     <key name="ImportMappingsDialog.RecentPackages">
       <recent name="" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="controller.chart" />
+      <recent name="controller.driver.ping" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.main">
+    <configuration name="BatteryChart" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="controller.chart.BatteryChart" />
+      <module name="projeto_lpoo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.chart.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -98,6 +121,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.main" />
+        <item itemvalue="Application.BatteryChart" />
       </list>
     </recent_temporary>
   </component>
@@ -129,6 +153,8 @@
       <workItem from="1573431934374" duration="6948000" />
       <workItem from="1573497805872" duration="3709000" />
       <workItem from="1575915085164" duration="3674000" />
+      <workItem from="1575973096424" duration="3042000" />
+      <workItem from="1575994271459" duration="10271000" />
     </task>
     <servers />
   </component>
@@ -153,10 +179,11 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="283" y="45" key="#Deployment/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575915104418" />
-    <state x="496" y="96" key="#com.intellij.ide.util.MemberChooser" timestamp="1575916745880">
+    <state x="496" y="96" key="#com.intellij.ide.util.MemberChooser" timestamp="1575983199206">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="496" y="96" key="#com.intellij.ide.util.MemberChooser/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575916745880" />
+    <state x="496" y="96" key="#com.intellij.ide.util.MemberChooser/0.27.1366.741@0.27.1366.741" timestamp="1575983199206" />
     <state x="420" y="169" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1575917217528">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
@@ -165,33 +192,61 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="536" y="275" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575915186542" />
+    <state x="1832" y="258" width="433" height="289" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1576005497346">
+      <screen x="1366" y="0" width="1366" height="768" />
+    </state>
+    <state x="1832" y="258" width="433" height="289" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576005497346" />
+    <state x="2145" y="27" width="587" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1576005653052">
+      <screen x="1366" y="0" width="1366" height="768" />
+    </state>
+    <state x="2145" y="27" width="587" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576005653052" />
     <state x="383" y="41" key="#main" timestamp="1575917601828">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="383" y="41" key="#main/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575917601828" />
-    <state width="1320" height="192" key="GridCell.Tab.0.bottom" timestamp="1575918761382">
-      <screen x="0" y="27" width="1366" height="741" />
+    <state width="1320" height="192" key="GridCell.Tab.0.bottom" timestamp="1576005358595">
+      <screen x="1366" y="0" width="1366" height="768" />
     </state>
     <state width="1320" height="192" key="GridCell.Tab.0.bottom/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575918761382" />
-    <state width="1320" height="192" key="GridCell.Tab.0.center" timestamp="1575918761381">
-      <screen x="0" y="27" width="1366" height="741" />
+    <state width="1320" height="192" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1575984768612" />
+    <state width="1320" height="192" key="GridCell.Tab.0.bottom/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576005358595" />
+    <state width="1320" height="192" key="GridCell.Tab.0.center" timestamp="1576005358595">
+      <screen x="1366" y="0" width="1366" height="768" />
     </state>
     <state width="1320" height="192" key="GridCell.Tab.0.center/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575918761381" />
-    <state width="1320" height="192" key="GridCell.Tab.0.left" timestamp="1575918761381">
-      <screen x="0" y="27" width="1366" height="741" />
+    <state width="1320" height="192" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1575984768611" />
+    <state width="1320" height="192" key="GridCell.Tab.0.center/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576005358595" />
+    <state width="1320" height="192" key="GridCell.Tab.0.left" timestamp="1576005358595">
+      <screen x="1366" y="0" width="1366" height="768" />
     </state>
     <state width="1320" height="192" key="GridCell.Tab.0.left/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575918761381" />
-    <state width="1320" height="192" key="GridCell.Tab.0.right" timestamp="1575918761382">
-      <screen x="0" y="27" width="1366" height="741" />
+    <state width="1320" height="192" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1575984768610" />
+    <state width="1320" height="192" key="GridCell.Tab.0.left/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576005358595" />
+    <state width="1320" height="192" key="GridCell.Tab.0.right" timestamp="1576005358595">
+      <screen x="1366" y="0" width="1366" height="768" />
     </state>
     <state width="1320" height="192" key="GridCell.Tab.0.right/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575918761382" />
-    <state x="362" y="39" key="com.intellij.ide.util.TipDialog" timestamp="1575915088449">
-      <screen x="0" y="27" width="1366" height="741" />
+    <state width="1320" height="192" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1575984768611" />
+    <state width="1320" height="192" key="GridCell.Tab.0.right/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576005358595" />
+    <state x="1728" y="27" key="com.intellij.ide.util.TipDialog" timestamp="1575994273182">
+      <screen x="1366" y="0" width="1366" height="768" />
     </state>
     <state x="362" y="39" key="com.intellij.ide.util.TipDialog/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575915088449" />
-    <state x="346" y="89" width="672" height="160" key="search.everywhere.popup" timestamp="1575916926321">
+    <state x="362" y="39" key="com.intellij.ide.util.TipDialog/0.27.1366.741@0.27.1366.741" timestamp="1575973095934" />
+    <state x="1728" y="27" key="com.intellij.ide.util.TipDialog/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1575994273182" />
+    <state x="353" y="80" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1575983845391">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
+    <state x="353" y="80" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1366.741@0.27.1366.741" timestamp="1575983845391" />
+    <state x="1366" y="27" width="500" height="741" key="refactoring.ChangeSignatureDialog" timestamp="1576004504953">
+      <screen x="1366" y="0" width="1366" height="768" />
+    </state>
+    <state x="1366" y="27" width="500" height="741" key="refactoring.ChangeSignatureDialog/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576004504953" />
+    <state x="1712" y="64" width="672" height="166" key="search.everywhere.popup" timestamp="1576001247344">
+      <screen x="1366" y="0" width="1366" height="768" />
+    </state>
     <state x="346" y="89" width="672" height="160" key="search.everywhere.popup/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575916926321" />
+    <state x="346" y="89" width="672" height="160" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1575983214785" />
+    <state x="1712" y="64" width="672" height="166" key="search.everywhere.popup/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576001247344" />
   </component>
 </project>

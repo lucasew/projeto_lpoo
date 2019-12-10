@@ -6,7 +6,7 @@
 package controller.extractor;
 
 import controller.ImageProvider;
-import controller.daemon.task.BatteryTask;
+import controller.reporter.BatteryReporter;
 import javax.swing.ImageIcon;
 
 /**
@@ -14,9 +14,9 @@ import javax.swing.ImageIcon;
  * @author lucasew
  */
 public class BatteryStateExtractor implements StateExtractor {
-    BatteryTask task;
+    BatteryReporter task;
 
-    public BatteryStateExtractor(BatteryTask task) {
+    public BatteryStateExtractor(BatteryReporter task) {
         this.task = task;
     }
     

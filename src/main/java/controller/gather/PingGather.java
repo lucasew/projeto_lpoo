@@ -1,7 +1,7 @@
 package controller.gather;
 
 import controller.driver.ping.GenericPingDriver;
-import model.Timestamp;
+import model.TimestampState;
 
 import java.io.IOException;
 import model.PingState;
@@ -14,10 +14,14 @@ public class PingGather {
         this.hostToPing = hostToPing;
     }
 
-    public PingState getState(Timestamp timestamp) throws IOException, InterruptedException {
+    public PingState getState() throws IOException, InterruptedException {
+        PingState state = new PingState();
         Integer res = driver.pingTo(hostToPing);
-        PingState state = new PingState(timestamp, res);
-        state.setTimestamp(timestamp);
+        if (res == null) {
+            res = 0;
+            state.setValido(false);
+        }
+        state.setLatency(res);
         return state;
     }
 }

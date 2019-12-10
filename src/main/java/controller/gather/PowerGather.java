@@ -2,7 +2,7 @@ package controller.gather;
 
 import controller.driver.power.GenericPowerDriver;
 import model.BatteryState;
-import model.Timestamp;
+import model.TimestampState;
 
 public class PowerGather {
     private final GenericPowerDriver driver;
@@ -10,11 +10,10 @@ public class PowerGather {
         this.driver = driver;
     }
 
-    public BatteryState getState(Timestamp timestamp) {
+    public BatteryState getState() {
         BatteryState state = new BatteryState();
         state.setState(driver.getState());
         state.setLevel(driver.getChargeLevel());
-        state.setTimestamp(timestamp);
         return state;
     }
 }

@@ -14,6 +14,7 @@ class LinuxPowerDriver implements GenericPowerDriver {
         if (!exists(Paths.get("/sys/class/power_supply")))
             throw new UnsupportedOperationException("Interfaces não disponiveis para consulta de nivel de energia");
     }
+
     LinuxPowerDriver() throws UnsupportedOperationException {
         this.Initialize();
     }
