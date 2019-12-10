@@ -2,53 +2,53 @@ package controller.daemon.task;
 
 import controller.driver.ping.GenericPingDriver;
 import controller.driver.ping.PingDriverFallbacker;
+import controller.gather.PingGather;
 import model.PingState;
 import model.Timestamp;
 
 import javax.persistence.EntityManager;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PingTask implements Task{
     private String hostToPing;
-    private Integer state;
-    private GenericPingDriver driver;
     private PingState lastState;
+    private PingGather gather;
 
     public PingState getLastState() {
         return lastState;
     }
 
     public PingTask(String hostToPing) {
-        driver = PingDriverFallbacker.getDriver();
-        this.hostToPing = hostToPing;
+        GenericPingDriver driver = PingDriverFallbacker.getDriver();
+        gather = new PingGather(driver, hostToPing);
         try {
-            this.state = driver.pingTo(hostToPing);
-        } catch (IOException | InterruptedException e) {
-            this.state = null;
-        }
-    }
-
-    Integer handleRead() {
-        try {
-            return driver.pingTo(hostToPing);
-        } catch (InterruptedException | IOException e) {
-            e.printStackTrace();
-            return null;
+            this.lastState = gather.getState(new Timestamp());
+        } catch (IOException | InterruptedException ex) {
+            Logger.getLogger(PingTask.class.getName()).log(Level.SEVERE, null, ex);
+            System.exit(1);
         }
     }
 
     @Override
     public boolean tickTask(EntityManager database) {
-        Integer current = handleRead();
-        if (this.state == null) {
+        try {
+            PingState cur = gather.getState(new Timestamp());
+            if (cur == null)
+                return false;
+            if (this.lastState.equals(cur)) {
+                return false;
+            }
+            synchronized(this) {
+                this.notify();
+            }
+            this.lastState = cur;
+            database.persist(this.lastState);
+            return true;
+        } catch (IOException | InterruptedException ex) {
+            Logger.getLogger(PingTask.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
-        if (this.state.equals(current)) {
-            return false;
-        }
-        this.lastState = new PingState(new Timestamp(), current);
-        database.persist(this.lastState);
-        this.state = current;
-        return true;
     }
 }

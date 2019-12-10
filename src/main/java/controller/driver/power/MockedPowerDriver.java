@@ -12,16 +12,19 @@ import model.PowerState;
  * @author a2049031
  */
 public class MockedPowerDriver implements GenericPowerDriver {
+    @Override
     public void Initialize() throws UnsupportedOperationException {}
-    boolean ticker = false; // Só pra gerar alteração de estado, gg
+    boolean ticker = false; // Sï¿½ pra gerar alteraï¿½ï¿½o de estado, gg
     public MockedPowerDriver() {
         this.Initialize();
     }
     
+    @Override
     public PowerState getState() {
         return PowerState.Charging;
     }
     
+    @Override
     public int getChargeLevel() {
         ticker = !ticker;
         return 81 + (ticker ? 1 : 0);

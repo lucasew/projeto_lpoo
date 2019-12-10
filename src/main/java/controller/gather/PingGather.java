@@ -1,22 +1,21 @@
 package controller.gather;
 
 import controller.driver.ping.GenericPingDriver;
-import controller.driver.power.GenericPowerDriver;
-import model.BatteryState;
 import model.Timestamp;
 
 import java.io.IOException;
-import java.util.Calendar;
 import model.PingState;
 
 public class PingGather {
-    private GenericPingDriver driver;
-    public PingGather(GenericPingDriver driver) {
+    private final GenericPingDriver driver;
+    private final String hostToPing;
+    public PingGather(GenericPingDriver driver, String hostToPing) {
         this.driver = driver;
+        this.hostToPing = hostToPing;
     }
 
     public PingState getState(Timestamp timestamp) throws IOException, InterruptedException {
-        Integer res = driver.pingTo("google.com");
+        Integer res = driver.pingTo(hostToPing);
         PingState state = new PingState(timestamp, res);
         state.setTimestamp(timestamp);
         return state;

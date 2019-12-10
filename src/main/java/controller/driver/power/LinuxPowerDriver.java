@@ -18,6 +18,7 @@ class LinuxPowerDriver implements GenericPowerDriver {
         this.Initialize();
     }
 
+    @Override
     public PowerState getState() {
         try {
             String rawState = readAllLines(Paths.get("/sys/class/power_supply/BAT1/status")).get(0);
@@ -37,6 +38,7 @@ class LinuxPowerDriver implements GenericPowerDriver {
 
     }
 
+    @Override
     public int getChargeLevel() {
         if (this.getState() != PowerState.AC) {
             try {

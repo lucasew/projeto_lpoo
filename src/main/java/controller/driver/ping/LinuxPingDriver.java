@@ -7,9 +7,7 @@ package controller.driver.ping;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,7 +15,7 @@ import java.util.regex.Pattern;
  *
  * @author a2049031
  */
-public class LinuxPingDriver implements GenericPingDriver {
+class LinuxPingDriver implements GenericPingDriver {
     private static final Pattern pattern = Pattern.compile("time=[0-9]+");
     private static final Pattern number = Pattern.compile("[0-9]+");
 

@@ -1,11 +1,10 @@
 package controller.driver.power;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class PowerDriverFallbacker {
-    private static List<Class<? extends GenericPowerDriver>> pretendents =
+    private static final List<Class<? extends GenericPowerDriver>> pretendents =
             new ArrayList<Class<? extends GenericPowerDriver>>() {{
                 add(LinuxPowerDriver.class);
                 add(MockedPowerDriver.class);
@@ -21,8 +20,7 @@ public class PowerDriverFallbacker {
                 PowerDriverFallbacker.backend = pretendent.newInstance();
                 return PowerDriverFallbacker.backend;
             } catch (IllegalAccessException | InstantiationException | UnsupportedOperationException e) {
-                System.out.println(String.format("%s n„o pode ser utilizado neste contexto por n„o ser suportado.", pretendent.toString()));
-                continue;
+                System.out.println(String.format("%s n√£o pode ser utilizado neste contexto por n√£o ser suportado.", pretendent.toString()));
             }
         }
         throw new UnsupportedOperationException();

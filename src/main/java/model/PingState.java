@@ -5,8 +5,7 @@
  */
 package model;
 
-import controller.gather.PingGather;
-
+import java.io.Serializable;
 import javax.persistence.*;
 
 /**
@@ -14,7 +13,7 @@ import javax.persistence.*;
  * @author a2049031
  */
 @Entity
-public class PingState extends SystemState {
+public class PingState implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id private long id;
 

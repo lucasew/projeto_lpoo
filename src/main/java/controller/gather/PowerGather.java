@@ -4,11 +4,8 @@ import controller.driver.power.GenericPowerDriver;
 import model.BatteryState;
 import model.Timestamp;
 
-import java.sql.Time;
-import java.util.Calendar;
-
 public class PowerGather {
-    private GenericPowerDriver driver;
+    private final GenericPowerDriver driver;
     public PowerGather(GenericPowerDriver driver) {
         this.driver = driver;
     }

@@ -1,10 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Calendar;
 
 @Entity
-public class BatteryState extends SystemState implements Comparable {
+public class BatteryState implements Serializable {
     @Enumerated(EnumType.STRING)
     private PowerState state;
 
@@ -47,17 +47,5 @@ public class BatteryState extends SystemState implements Comparable {
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        BatteryState other = (BatteryState)o;
-        if (this.state != other.state) {
-            return this.state.ordinal() - other.state.ordinal();
-        }
-        if (this.level != other.level) {
-            return this.level - other.level;
-        }
-        return 0;
     }
 }

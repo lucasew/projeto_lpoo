@@ -2,7 +2,6 @@ package model;
 
 import javax.persistence.*;
 import java.util.Calendar;
-import java.util.List;
 
 @Entity
 public class Timestamp {
