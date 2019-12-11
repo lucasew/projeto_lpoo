@@ -6,10 +6,12 @@
 package controller.chart;
 
 import controller.DatabaseController;
-import model.BatteryState;
 import model.PingState;
 import model.TimestampState;
-import org.jfree.data.xy.XYSeries;
+import org.jfree.data.time.FixedMillisecond;
+import org.jfree.data.time.TimeSeries;
+import org.jfree.data.time.TimeSeriesCollection;
+import org.jfree.data.time.TimeSeriesDataItem;
 import org.jfree.data.xy.XYSeriesCollection;
 
 import javax.persistence.Query;
@@ -36,9 +38,9 @@ public class PingChart extends CommonChart {
     }
 
     @Override
-    public XYSeriesCollection buildDataset() {
-        final XYSeries series = new XYSeries("Ping");
-        final XYSeries falhaPing = new XYSeries("Falhas");
+    public TimeSeriesCollection buildDataset() {
+        final TimeSeries series = new TimeSeries("Ping");
+        final TimeSeries falhaPing = new TimeSeries("Falhas");
         for (TimestampState este : this.amostras) {
             Query query = DatabaseController.getInstance()
                     .createQuery("select p from PingState p where id = :id");
@@ -49,15 +51,16 @@ public class PingChart extends CommonChart {
                 continue;
             }
             PingState latency = b.get(0);
-            long timestamp = este.getTimestamp().getTimeInMillis() / 1000;
+            FixedMillisecond timestamp = new FixedMillisecond(este.getTimestamp().getTime());
+
             if (!latency.isValido()) {
-                falhaPing.add(timestamp, 100);
+                falhaPing.add(new TimeSeriesDataItem(timestamp, 100));
             } else {
-                falhaPing.add(timestamp, 0);
+                falhaPing.add(new TimeSeriesDataItem(timestamp, 0));
             }
-            series.add(timestamp, b.get(0).getLatency());
+            series.add(new TimeSeriesDataItem(timestamp, b.get(0).getLatency()));
         }
-        final XYSeriesCollection dataset = new XYSeriesCollection();
+        final TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.addSeries(series);
         dataset.addSeries(falhaPing);
         return dataset;

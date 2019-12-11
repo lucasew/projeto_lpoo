@@ -15,7 +15,7 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.data.xy.XYSeriesCollection;
+import org.jfree.data.time.TimeSeriesCollection;
 
 import javax.swing.*;
 
@@ -33,12 +33,11 @@ public abstract class CommonChart extends JFrame {
                 .createQuery("select t from TimestampState t")
                 .getResultList();
         System.out.printf("Amostras: %d\n", this.amostras.size());
-        JFreeChart chart = ChartFactory.createXYLineChart(
+        JFreeChart chart = ChartFactory.createTimeSeriesChart(
                 titulo,
                 "Tempo",
                 eixo,
                 buildDataset(),
-                PlotOrientation.VERTICAL,
                 true,
                 true,
                 false
@@ -50,5 +49,5 @@ public abstract class CommonChart extends JFrame {
 
     }
     
-    public abstract XYSeriesCollection buildDataset();
+    public abstract TimeSeriesCollection buildDataset();
 }

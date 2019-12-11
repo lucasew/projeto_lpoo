@@ -9,7 +9,10 @@ import controller.DatabaseController;
 import model.BatteryState;
 import model.PowerState;
 import model.TimestampState;
-import org.hibernate.metamodel.relational.Database;
+import org.jfree.data.time.FixedMillisecond;
+import org.jfree.data.time.TimeSeries;
+import org.jfree.data.time.TimeSeriesCollection;
+import org.jfree.data.time.TimeSeriesDataItem;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -37,9 +40,9 @@ public class BatteryChart extends CommonChart {
     }
 
     @Override
-    public XYSeriesCollection buildDataset() {
-        final XYSeries series = new XYSeries("Bateria");
-        final XYSeries estado = new XYSeries("Está carregando?");
+    public TimeSeriesCollection buildDataset() {
+        final TimeSeries series = new TimeSeries("Bateria");
+        final TimeSeries estado = new TimeSeries("Está carregando?");
         for (TimestampState este : this.amostras) {
             Query query = DatabaseController.getInstance()
                     .createQuery("select b from BatteryState b where id = :id");
@@ -49,20 +52,18 @@ public class BatteryChart extends CommonChart {
                 System.out.println(".");
                 continue;
             }
-            long timestamp = este.getTimestamp().getTimeInMillis()/1000;
+            FixedMillisecond timestamp = new FixedMillisecond(este.getTimestamp().getTime());
             BatteryState state = b.get(0);
             if (state.getState() == PowerState.Discharging) {
-                estado.add(timestamp, 0);
+                estado.add(new TimeSeriesDataItem(timestamp, 0));
             } else {
-                estado.add(timestamp, 100);
+                estado.add(new TimeSeriesDataItem(timestamp, 100));
             }
-            series.add(timestamp, state.getLevel());
+            series.add(new TimeSeriesDataItem(timestamp, state.getLevel()));
         }
-        final XYSeriesCollection dataset = new XYSeriesCollection();
+        final TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.addSeries(series);
         dataset.addSeries(estado);
         return dataset;
-
     }
-    
 }
