@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class BatteryChart extends CommonChart {
     public BatteryChart() {
-        super("Histórico do uso de bateria", "Exibição do histórico do uso de bateria", "Uso de bateria");
+        super("Histórico do uso de bateria", "Uso de bateria");
     }
 
     public static void main(String[] args) {

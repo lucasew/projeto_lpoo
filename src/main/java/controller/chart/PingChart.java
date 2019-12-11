@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class PingChart extends CommonChart {
     public PingChart() {
-        super("Histórico de ping", "Exibição do histórico do ping", "Tempo de ping");
+        super("Histórico de ping",  "Tempo de ping");
     }
 
     public static void main(String[] args) {

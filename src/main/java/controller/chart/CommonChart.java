@@ -26,7 +26,7 @@ import javax.swing.*;
 public abstract class CommonChart extends JFrame {
     List<TimestampState> amostras;
 
-    public CommonChart(String titulo, String descricao, String eixo) {
+    public CommonChart(String titulo, String eixo) {
         super(titulo);
 
         this.amostras = DatabaseController.getInstance()
