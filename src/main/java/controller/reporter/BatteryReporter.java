@@ -1,5 +1,6 @@
 package controller.reporter;
 
+import controller.DatabaseController;
 import controller.driver.power.GenericPowerDriver;
 import controller.driver.power.PowerDriverFallbacker;
 import controller.gather.PowerGather;
@@ -11,7 +12,6 @@ import model.TimestampState;
 public class BatteryReporter implements Reporter {
     PowerGather gather;
     BatteryState state;
-    TimestampState lastTimestamp;
 
     public BatteryState getLastState() {
         return state;
@@ -20,10 +20,10 @@ public class BatteryReporter implements Reporter {
     public BatteryReporter() {
         GenericPowerDriver driver = PowerDriverFallbacker.getDriver();
         this.gather = new PowerGather(driver);
-        lastTimestamp = new TimestampState();
         while (state == null) {
             state = gather.getState();
         }
+        tickTask(DatabaseController.getInstance(), new TimestampState());
     }
 
     @Override

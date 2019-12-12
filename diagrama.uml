@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1175.0" y="790.0">model.BatteryState</node>
+    <node x="419.0" y="790.0">model.TimestampState</node>
+    <node x="1062.0" y="1334.0">controller.driver.power.PowerDriverFallbacker</node>
+    <node x="898.0" y="1506.0">controller.facade.MainFacade</node>
+    <node x="1419.0" y="790.0">controller.facade.CaptureDaemon</node>
+    <node x="693.0" y="1506.0">main</node>
+    <node x="323.0" y="1122.0">controller.DatabaseController</node>
+    <node x="635.0" y="0.0">controller.extractor.StateExtractor</node>
+    <node x="101.25" y="0.0">controller.driver.power.GenericPowerDriver</node>
+    <node x="937.0" y="790.0">view.components.DashboardButton</node>
+    <node x="0.0" y="1122.0">controller.gather.PingGather</node>
+    <node x="899.0" y="1334.0">model.PowerState</node>
+    <node x="370.0" y="534.0">controller.reporter.BatteryReporter</node>
+    <node x="765.0" y="622.0">controller.chart.BatteryChart</node>
+    <node x="0.0" y="1334.0">model.BatteryState_</node>
+    <node x="0.0" y="534.0">controller.reporter.PingReporter</node>
+    <node x="414.0" y="141.0">controller.extractor.BatteryStateExtractor</node>
+    <node x="899.0" y="1122.0">model.TimestampState_</node>
+    <node x="1044.0" y="622.0">controller.chart.PingChart</node>
+    <node x="202.0" y="195.0">controller.driver.power.LinuxPowerDriver</node>
+    <node x="675.0" y="790.0">model.PingState</node>
+    <node x="904.5" y="429.0">controller.chart.CommonChart</node>
+    <node x="0.0" y="1506.0">controller.driver.ping.PingDriverFallbacker</node>
+    <node x="418.0" y="1506.0">controller.ImageProvider</node>
+    <node x="0.0" y="173.0">controller.driver.power.MockedPowerDriver</node>
+    <node x="721.0" y="129.0">controller.extractor.PingStateExtractor</node>
+    <node x="458.0" y="1334.0">model.PingState_</node>
+    <node x="185.0" y="429.0">controller.reporter.Reporter</node>
+    <node x="1041.0" y="0.0">controller.driver.ping.GenericPingDriver</node>
+    <node x="1041.0" y="129.0">controller.driver.ping.LinuxPingDriver</node>
+    <node x="596.0" y="1122.0">controller.gather.PowerGather</node>
+    <node x="0.0" y="790.0">view.UIDashboard</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="controller.reporter.PingReporter" target="controller.reporter.Reporter">
+      <point x="0.0" y="-105.5" />
+      <point x="175.0" y="509.0" />
+      <point x="272.5" y="509.0" />
+      <point x="-87.5" y="27.5" />
+    </edge>
+    <edge source="controller.chart.PingChart" target="controller.chart.CommonChart">
+      <point x="0.0" y="-61.5" />
+      <point x="1173.5" y="597.0" />
+      <point x="1098.75" y="597.0" />
+      <point x="64.75" y="71.5" />
+    </edge>
+    <edge source="controller.driver.ping.LinuxPingDriver" target="controller.driver.ping.GenericPingDriver">
+      <point x="0.0" y="-95.5" />
+      <point x="0.0" y="39.5" />
+    </edge>
+    <edge source="controller.reporter.BatteryReporter" target="controller.reporter.Reporter">
+      <point x="0.0" y="-105.5" />
+      <point x="545.0" y="509.0" />
+      <point x="447.5" y="509.0" />
+      <point x="87.5" y="27.5" />
+    </edge>
+    <edge source="controller.driver.power.LinuxPowerDriver" target="controller.driver.power.GenericPowerDriver">
+      <point x="0.0" y="-83.5" />
+      <point x="285.5" y="148.0" />
+      <point x="231.75" y="148.0" />
+      <point x="43.5" y="61.5" />
+    </edge>
+    <edge source="controller.driver.power.MockedPowerDriver" target="controller.driver.power.GenericPowerDriver">
+      <point x="0.0" y="-105.5" />
+      <point x="91.0" y="148.0" />
+      <point x="144.75" y="148.0" />
+      <point x="-43.5" y="61.5" />
+    </edge>
+    <edge source="controller.chart.BatteryChart" target="controller.chart.CommonChart">
+      <point x="0.0" y="-61.5" />
+      <point x="894.5" y="597.0" />
+      <point x="969.25" y="597.0" />
+      <point x="-64.75" y="71.5" />
+    </edge>
+    <edge source="controller.extractor.PingStateExtractor" target="controller.extractor.StateExtractor">
+      <point x="0.0" y="-95.5" />
+      <point x="858.5" y="104.0" />
+      <point x="744.5" y="104.0" />
+      <point x="36.5" y="39.5" />
+    </edge>
+    <edge source="controller.extractor.BatteryStateExtractor" target="controller.extractor.StateExtractor">
+      <point x="0.0" y="-83.5" />
+      <point x="557.5" y="104.0" />
+      <point x="671.5" y="104.0" />
+      <point x="-36.5" y="39.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="457.5" y="287.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Inner Classes</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

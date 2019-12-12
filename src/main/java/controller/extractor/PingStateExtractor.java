@@ -42,9 +42,4 @@ public class PingStateExtractor implements StateExtractor {
         PingState latency = task.getLastState();
         return latency.isValido() ? String.format("Conectado: %d ms",  latency.getLatency()) : "Sem conexão";
     }
-
-    @Override
-    public void waitForUpdate() throws InterruptedException {
-        task.wait();
-    }
 }

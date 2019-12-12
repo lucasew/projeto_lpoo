@@ -42,7 +42,7 @@ public class BatteryChart extends CommonChart {
     @Override
     public TimeSeriesCollection buildDataset() {
         final TimeSeries series = new TimeSeries("Bateria");
-        final TimeSeries estado = new TimeSeries("Está carregando?");
+        final TimeSeries isCarregando = new TimeSeries("Está carregando?");
         for (TimestampState este : this.amostras) {
             Query query = DatabaseController.getInstance()
                     .createQuery("select b from BatteryState b where id = :id");
@@ -55,15 +55,15 @@ public class BatteryChart extends CommonChart {
             FixedMillisecond timestamp = new FixedMillisecond(este.getTimestamp().getTime());
             BatteryState state = b.get(0);
             if (state.getState() == PowerState.Discharging) {
-                estado.add(new TimeSeriesDataItem(timestamp, 0));
+                isCarregando.add(new TimeSeriesDataItem(timestamp, 0));
             } else {
-                estado.add(new TimeSeriesDataItem(timestamp, 100));
+                isCarregando.add(new TimeSeriesDataItem(timestamp, 100));
             }
             series.add(new TimeSeriesDataItem(timestamp, state.getLevel()));
         }
         final TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.addSeries(series);
-        dataset.addSeries(estado);
+        dataset.addSeries(isCarregando);
         return dataset;
     }
 }

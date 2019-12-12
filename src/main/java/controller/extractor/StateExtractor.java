@@ -14,5 +14,4 @@ import javax.swing.ImageIcon;
 public interface StateExtractor {
     ImageIcon getIcon();
     String getLabel();
-    void waitForUpdate() throws InterruptedException;
 }

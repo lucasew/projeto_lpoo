@@ -26,7 +26,6 @@ public class BatteryStateExtractor implements StateExtractor {
             case AC:
                 return ImageProvider.getImage("/META-INF/icon/ac.png");
             case Charging:
-                return ImageProvider.getImage("/META-INF/icon/battery_charging.png");
             case Full:
                 return ImageProvider.getImage("/META-INF/icon/battery_charging.png");
             case Discharging:
@@ -38,12 +37,5 @@ public class BatteryStateExtractor implements StateExtractor {
     @Override
     public String getLabel() {
         return String.format("%d %% - %s", task.getLastState().getLevel(), task.getLastState().getState().toString());
-    }
-
-    @Override
-    public void waitForUpdate() throws InterruptedException {
-        synchronized(this.task) {
-            this.task.wait();
-        }
     }
 }
