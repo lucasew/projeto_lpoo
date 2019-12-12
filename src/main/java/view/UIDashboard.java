@@ -37,6 +37,7 @@ public class UIDashboard extends javax.swing.JFrame implements Runnable, Closeab
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         WindowCounter.increment();
         this.addWindowListener(new DestroyWindowEventHandler(this));
+        setResizable(false);
     }
 
     public void close() {

@@ -44,6 +44,7 @@ public class UISelecionarHostname extends javax.swing.JFrame implements Closeabl
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         WindowCounter.increment();
         this.addWindowListener(new DestroyWindowEventHandler(this));
+        setResizable(false);
     }
 
     public void close() {
