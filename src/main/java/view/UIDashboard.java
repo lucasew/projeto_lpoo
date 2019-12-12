@@ -5,20 +5,25 @@
  */
 package view;
 
-import controller.capture.CaptureListener;
+import controller.lifecycle.Closeable;
+import controller.lifecycle.DestroyWindowEventHandler;
+import controller.lifecycle.WindowCounter;
+import controller.capture.CaptureDaemon;
 import controller.chart.BatteryChart;
 import controller.chart.PingChart;
-import controller.capture.CaptureDaemon;
 import controller.extractor.BatteryStateExtractor;
 import controller.extractor.PingStateExtractor;
 import model.Machine;
-import model.MachineState;
+import view.components.ChartViewer;
+
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  *
  * @author lucasew
  */
-public class UIDashboard extends javax.swing.JFrame implements Runnable {
+public class UIDashboard extends javax.swing.JFrame implements Runnable, Closeable {
 
     private Machine machine;
     private CaptureDaemon captureDaemon;
@@ -27,14 +32,23 @@ public class UIDashboard extends javax.swing.JFrame implements Runnable {
         this.captureDaemon = daemon;
         initComponents();
         this.setTitle("Dashboard - Monitor de Recursos");
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        WindowCounter.increment();
+        this.addWindowListener(new DestroyWindowEventHandler(this));
+    }
+
+    public void close() {
+        WindowCounter.decrement();
+        this.captureDaemon.stop();
+        System.out.println("Parando daemon...");
     }
 
     @Override
     public void run() {
         captureDaemon.addListener(this.btnDashboardPing);
-        captureDaemon.addListener(this.btnDashboardBat);
+        captureDaemon.addListener(this.btnDashboardBattery);
         this.btnDashboardPing.setExtractor(new PingStateExtractor(1000));
-        this.btnDashboardBat.setExtractor(new BatteryStateExtractor());
+        this.btnDashboardBattery.setExtractor(new BatteryStateExtractor());
         captureDaemon.run();
     }
 
@@ -48,21 +62,23 @@ public class UIDashboard extends javax.swing.JFrame implements Runnable {
     private void initComponents() {
 
         btnDashboardPing = new view.components.DashboardButton();
-        btnDashboardBat = new view.components.DashboardButton();
+        btnDashboardBattery = new view.components.DashboardButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnDashboardPing.setText("dashboardButton1");
+        btnDashboardPing.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/icon/desconectado.png"))); // NOI18N
+        btnDashboardPing.setText("Sem informações");
         btnDashboardPing.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDashboardPingActionPerformed(evt);
             }
         });
 
-        btnDashboardBat.setText("dashboardButton2");
-        btnDashboardBat.addActionListener(new java.awt.event.ActionListener() {
+        btnDashboardBattery.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/icon/battery_unknown.png"))); // NOI18N
+        btnDashboardBattery.setText("Sem informações");
+        btnDashboardBattery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDashboardBatActionPerformed(evt);
+                btnDashboardBatteryActionPerformed(evt);
             }
         });
 
@@ -73,7 +89,7 @@ public class UIDashboard extends javax.swing.JFrame implements Runnable {
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDashboardBat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDashboardBattery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnDashboardPing, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
@@ -82,7 +98,7 @@ public class UIDashboard extends javax.swing.JFrame implements Runnable {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(btnDashboardPing, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnDashboardBat, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDashboardBattery, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
@@ -90,22 +106,15 @@ public class UIDashboard extends javax.swing.JFrame implements Runnable {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDashboardPingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardPingActionPerformed
-        PingChart chart = new PingChart(machine);
-        chart.setLocationRelativeTo(null);
-        chart.setSize(800, 600);
-        chart.setVisible(true);
+        new ChartViewer(new PingChart(machine)).run();
     }//GEN-LAST:event_btnDashboardPingActionPerformed
 
-    private void btnDashboardBatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardBatActionPerformed
-        BatteryChart chart = new BatteryChart(machine);
-        chart.setLocationRelativeTo(null);
-        chart.setSize(800, 600);
-        chart.setVisible(true);
-    }//GEN-LAST:event_btnDashboardBatActionPerformed
+    private void btnDashboardBatteryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardBatteryActionPerformed
+        new ChartViewer(new BatteryChart(machine)).run();
+    }//GEN-LAST:event_btnDashboardBatteryActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private view.components.DashboardButton btnDashboardBat;
+    private view.components.DashboardButton btnDashboardBattery;
     private view.components.DashboardButton btnDashboardPing;
-
     // End of variables declaration//GEN-END:variables
 }

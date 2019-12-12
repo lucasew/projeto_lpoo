@@ -21,6 +21,11 @@ public class MachineController {
         return null;
     }
 
+    public static List<Machine> getAllMachines() {
+        return DatabaseController.getInstance()
+                .createQuery("select m from Machine m")
+                .getResultList();
+    }
     public static Machine registerMachine(String hostname) {
         Machine m = MachineController.getMachine(hostname);
         if (m != null) {

@@ -13,6 +13,10 @@ public class Machine {
 
     public Machine() {
     }
+    
+    public String toString() {
+        return this.hostname;
+    }
 
     public String getHostname() {
         return hostname;

@@ -1,6 +1,7 @@
 package controller.capture;
 
 import controller.DatabaseController;
+import controller.lifecycle.WindowCounter;
 import controller.reporter.Reporter;
 import model.Machine;
 import model.MachineState;
@@ -30,10 +31,16 @@ public class CaptureDaemon implements Runnable {
         listeners.add(listener);
     }
 
+    private boolean isRunning = true;
+
+    public void stop() {
+        isRunning = false;
+    }
+
     @Override
     public void run() {
         try {
-            while (true) {
+            while (isRunning && WindowCounter.getCounter() > 0) {
                 Thread.sleep(sleepTime);
                 database.getTransaction().begin();
                 try {

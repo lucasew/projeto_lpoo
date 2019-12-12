@@ -26,7 +26,7 @@
           <Group type="102" attributes="0">
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnDashboardBat" max="32767" attributes="0"/>
+                  <Component id="btnDashboardBattery" max="32767" attributes="0"/>
                   <Component id="btnDashboardPing" alignment="0" pref="422" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -38,7 +38,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="btnDashboardPing" min="-2" pref="58" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="btnDashboardBat" min="-2" pref="57" max="-2" attributes="0"/>
+              <Component id="btnDashboardBattery" min="-2" pref="57" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -47,18 +47,24 @@
   <SubComponents>
     <Component class="view.components.DashboardButton" name="btnDashboardPing">
       <Properties>
-        <Property name="text" type="java.lang.String" value="dashboardButton1"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/META-INF/icon/desconectado.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Sem informa&#xe7;&#xf5;es"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDashboardPingActionPerformed"/>
       </Events>
     </Component>
-    <Component class="view.components.DashboardButton" name="btnDashboardBat">
+    <Component class="view.components.DashboardButton" name="btnDashboardBattery">
       <Properties>
-        <Property name="text" type="java.lang.String" value="dashboardButton2"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/META-INF/icon/battery_unknown.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Sem informa&#xe7;&#xf5;es"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDashboardBatActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDashboardBatteryActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
