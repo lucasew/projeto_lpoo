@@ -18,25 +18,24 @@ import model.MachineState;
  *
  * @author lucasew
  */
-public class UIDashboard extends javax.swing.JFrame implements Runnable, CaptureListener {
+public class UIDashboard extends javax.swing.JFrame implements Runnable {
 
     private Machine machine;
-    public UIDashboard(Machine machine) {
+    private CaptureDaemon captureDaemon;
+    public UIDashboard(Machine machine, CaptureDaemon daemon) {
         this.machine = machine;
+        this.captureDaemon = daemon;
         initComponents();
         this.setTitle("Dashboard - Monitor de Recursos");
     }
 
     @Override
     public void run() {
+        captureDaemon.addListener(this.btnDashboardPing);
+        captureDaemon.addListener(this.btnDashboardBat);
         this.btnDashboardPing.setExtractor(new PingStateExtractor(1000));
         this.btnDashboardBat.setExtractor(new BatteryStateExtractor());
-    }
-
-    @Override
-    public void handleMachineStateCapture(MachineState state) {
-        this.btnDashboardPing.handleMachineStateCapture(state);
-        this.btnDashboardBat.handleMachineStateCapture(state);
+        captureDaemon.run();
     }
 
     /**

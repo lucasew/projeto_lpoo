@@ -21,7 +21,6 @@ import view.UIDashboard;
  * @author lucasew
  */
 public class MainFacade implements Runnable {
-    CaptureDaemon captureDaemon;
     Machine machine;
 
     private ArrayList<Reporter> getReporters() {
@@ -31,21 +30,14 @@ public class MainFacade implements Runnable {
         return reporters;
     }
 
-    private UIDashboard getDashboard() {
-        UIDashboard dashboard = new UIDashboard(machine);
-        dashboard.setVisible(true);
-        return dashboard;
-    }
-
     public MainFacade(String hostname) {
         machine = MachineController.registerMachine(hostname);
-        captureDaemon = new CaptureDaemon(1000, getReporters(), machine);
     }
 
     public void run() {
-        UIDashboard dashboard = getDashboard();
-        captureDaemon.addListener(dashboard);
-        new Thread(captureDaemon, "CaptureDaemon").start();
-        new Thread(dashboard, "Dashboard").start();
+        CaptureDaemon captureDaemon = new CaptureDaemon(1000, getReporters(), machine);
+        UIDashboard ui = new UIDashboard(machine, captureDaemon);
+        ui.setVisible(true);
+        new Thread(ui, "Dashboard").start();
     }
 }
