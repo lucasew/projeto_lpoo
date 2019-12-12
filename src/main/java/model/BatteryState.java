@@ -9,11 +9,11 @@ public class BatteryState implements Serializable {
     @Enumerated(EnumType.STRING)
     private PowerState state;
 
+    @OneToOne
+    private MachineState machineState;
+
     @Column
     private int level;
-
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    private TimestampState timestamp;
 
     public PowerState getState() {
         return state;
@@ -42,12 +42,12 @@ public class BatteryState implements Serializable {
         return id;
     }
 
-    public TimestampState getTimestamp() {
-        return timestamp;
+    public MachineState getMachineState() {
+        return machineState;
     }
 
-    public void setTimestamp(TimestampState timestamp) {
-        this.timestamp = timestamp;
+    public void setMachineState(MachineState machineState) {
+        this.machineState = machineState;
     }
 
     @Override
@@ -56,11 +56,7 @@ public class BatteryState implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         BatteryState that = (BatteryState) o;
         return level == that.level &&
-                state == that.state;
+                state.equals(that.state);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(state, level, timestamp, id);
-    }
 }

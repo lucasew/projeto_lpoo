@@ -5,6 +5,10 @@
  */
 package controller.extractor;
 
+import controller.capture.CaptureDaemon;
+import model.Machine;
+import model.MachineState;
+
 import javax.swing.ImageIcon;
 
 /**
@@ -12,6 +16,6 @@ import javax.swing.ImageIcon;
  * @author lucasew
  */
 public interface StateExtractor {
-    ImageIcon getIcon();
-    String getLabel();
+    ImageIcon getIcon(MachineState state);
+    String getLabel(MachineState state);
 }

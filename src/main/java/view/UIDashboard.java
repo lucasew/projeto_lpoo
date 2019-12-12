@@ -5,38 +5,40 @@
  */
 package view;
 
+import controller.capture.CaptureListener;
 import controller.chart.BatteryChart;
 import controller.chart.PingChart;
-import controller.reporter.PingReporter;
-import controller.reporter.BatteryReporter;
+import controller.capture.CaptureDaemon;
 import controller.extractor.BatteryStateExtractor;
 import controller.extractor.PingStateExtractor;
+import model.Machine;
+import model.MachineState;
 
 /**
  *
  * @author lucasew
  */
-public class UIDashboard extends javax.swing.JFrame implements Runnable {
+public class UIDashboard extends javax.swing.JFrame implements Runnable, CaptureListener {
 
-    private final PingReporter pingTask;
-    private final BatteryReporter powerTask;
-
-    public UIDashboard(PingReporter pingTask, BatteryReporter powerTask) {
-        this.pingTask = pingTask;
-        this.powerTask = powerTask;
+    private Machine machine;
+    public UIDashboard(Machine machine) {
+        this.machine = machine;
         initComponents();
         this.setTitle("Dashboard - Monitor de Recursos");
     }
 
     @Override
     public void run() {
-        this.btnDashboardPing.setExtractor(new PingStateExtractor(pingTask, 1000));
-        this.btnDashboardBat.setExtractor(new BatteryStateExtractor(powerTask));
-        Thread btnDashboardBatDaemon = new Thread(btnDashboardBat);
-        Thread btnDashboardPingDaemon = new Thread(btnDashboardPing);
-        btnDashboardBatDaemon.start();
-        btnDashboardPingDaemon.start();
+        this.btnDashboardPing.setExtractor(new PingStateExtractor(1000));
+        this.btnDashboardBat.setExtractor(new BatteryStateExtractor());
     }
+
+    @Override
+    public void handleMachineStateCapture(MachineState state) {
+        this.btnDashboardPing.handleMachineStateCapture(state);
+        this.btnDashboardBat.handleMachineStateCapture(state);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,14 +91,14 @@ public class UIDashboard extends javax.swing.JFrame implements Runnable {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDashboardPingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardPingActionPerformed
-        PingChart chart = new PingChart();
+        PingChart chart = new PingChart(machine);
         chart.setLocationRelativeTo(null);
         chart.setSize(800, 600);
         chart.setVisible(true);
     }//GEN-LAST:event_btnDashboardPingActionPerformed
 
     private void btnDashboardBatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardBatActionPerformed
-        BatteryChart chart = new BatteryChart();
+        BatteryChart chart = new BatteryChart(machine);
         chart.setLocationRelativeTo(null);
         chart.setSize(800, 600);
         chart.setVisible(true);
@@ -105,5 +107,6 @@ public class UIDashboard extends javax.swing.JFrame implements Runnable {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private view.components.DashboardButton btnDashboardBat;
     private view.components.DashboardButton btnDashboardPing;
+
     // End of variables declaration//GEN-END:variables
 }

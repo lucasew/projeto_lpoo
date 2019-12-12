@@ -6,23 +6,28 @@
 package controller.extractor;
 
 import controller.ImageProvider;
-import controller.reporter.BatteryReporter;
-import javax.swing.ImageIcon;
+import controller.capture.CaptureDaemon;
+import model.BatteryState;
+import model.MachineState;
+
+import javax.swing.*;
 
 /**
  *
  * @author lucasew
  */
 public class BatteryStateExtractor implements StateExtractor {
-    BatteryReporter task;
 
-    public BatteryStateExtractor(BatteryReporter task) {
-        this.task = task;
+    private BatteryState getBatteryState(MachineState state) {
+        return state.getBatteryState();
     }
-    
     @Override
-    public ImageIcon getIcon() {
-        switch (task.getLastState().getState()) {
+    public ImageIcon getIcon(MachineState state) {
+        BatteryState bstate = getBatteryState(state);
+        if (bstate == null) {
+            return ImageProvider.getImage("/META-INF/icon/battery_unknown.png");
+        }
+        switch (bstate.getState()) {
             case AC:
                 return ImageProvider.getImage("/META-INF/icon/ac.png");
             case Charging:
@@ -35,7 +40,10 @@ public class BatteryStateExtractor implements StateExtractor {
     }
 
     @Override
-    public String getLabel() {
-        return String.format("%d %% - %s", task.getLastState().getLevel(), task.getLastState().getState().toString());
+    public String getLabel(MachineState state) {
+        BatteryState batteryState = getBatteryState(state);
+        return batteryState == null
+                ? "[DESCONHECIDO]"
+                : String.format("%d %% - %s", batteryState.getLevel(), batteryState.getState().toString());
     }
 }

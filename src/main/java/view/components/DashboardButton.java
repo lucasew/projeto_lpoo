@@ -5,14 +5,17 @@
  */
 package view.components;
 
+import controller.capture.CaptureListener;
 import controller.extractor.StateExtractor;
+import model.MachineState;
+
 import javax.swing.JButton;
 
 /**
  *
  * @author lucasew
  */
-public class DashboardButton extends JButton implements Runnable {
+public class DashboardButton extends JButton implements CaptureListener {
 
     StateExtractor extractor;
     public DashboardButton() {
@@ -25,26 +28,13 @@ public class DashboardButton extends JButton implements Runnable {
 
     public void setExtractor(StateExtractor extractor) {
         this.extractor = extractor;
-        tick();
-        
     }
 
     @Override
-    public void run() {
-        while(true) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                break;
-            }
-            tick();
-        }
-    }
-    
-    void tick() {
-        synchronized(this) {
-            this.setIcon(extractor.getIcon());
-            this.setText(extractor.getLabel());
+    public void handleMachineStateCapture(MachineState state) {
+        if (extractor != null) {
+            this.setIcon(extractor.getIcon(state));
+            this.setText(extractor.getLabel(state));
         }
     }
 }

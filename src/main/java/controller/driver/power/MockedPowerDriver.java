@@ -11,7 +11,7 @@ import model.PowerState;
  *
  * @author a2049031
  */
-public class MockedPowerDriver implements GenericPowerDriver {
+public class MockedPowerDriver extends GenericPowerDriver {
     @Override
     public void Initialize() throws UnsupportedOperationException {}
     boolean ticker = false; // S� pra gerar altera��o de estado, gg

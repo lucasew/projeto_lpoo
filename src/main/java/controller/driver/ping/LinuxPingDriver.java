@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  *
  * @author a2049031
  */
-class LinuxPingDriver implements GenericPingDriver {
+class LinuxPingDriver extends GenericPingDriver {
     private static final Pattern pattern = Pattern.compile("time=[0-9]+");
     private static final Pattern number = Pattern.compile("[0-9]+");
 
@@ -25,10 +25,6 @@ class LinuxPingDriver implements GenericPingDriver {
         if (!isWindows) {
             throw new UnsupportedOperationException("Plataforma nãoo suportada.");
         }
-    }
-
-    LinuxPingDriver() {
-        Initialize();
     }
 
     @Override
@@ -41,7 +37,7 @@ class LinuxPingDriver implements GenericPingDriver {
         BufferedReader r = new BufferedReader(new InputStreamReader(proc.getInputStream()));
         if (ecode != 0) {
             return null;
-        };
+        }
         for (String line = r.readLine(); line != null; line = r.readLine()) {
             Matcher mexpr = LinuxPingDriver.pattern.matcher(line).usePattern(LinuxPingDriver.pattern);
             while (mexpr.find()) {

@@ -6,6 +6,9 @@
 package controller.chart;
 
 import controller.DatabaseController;
+import controller.database.MachineController;
+import model.Machine;
+import model.MachineState;
 import model.PingState;
 import model.TimestampState;
 import org.jfree.data.time.FixedMillisecond;
@@ -23,13 +26,13 @@ import java.util.List;
  * @author lucasew
  */
 public class PingChart extends CommonChart {
-    public PingChart() {
-        super("Histórico de ping",  "Tempo de ping");
+    public PingChart(Machine machine) {
+        super(machine, "Histórico de ping",  "Tempo de ping");
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            PingChart example = new PingChart();
+            PingChart example = new PingChart(MachineController.getMachine("acer-manjado"));
             example.setSize(800, 400);
             example.setLocationRelativeTo(null);
             example.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -41,24 +44,15 @@ public class PingChart extends CommonChart {
     public TimeSeriesCollection buildDataset() {
         final TimeSeries series = new TimeSeries("Ping");
         final TimeSeries falhaPing = new TimeSeries("Falhas");
-        for (TimestampState este : this.amostras) {
-            Query query = DatabaseController.getInstance()
-                    .createQuery("select p from PingState p where id = :id");
-            query.setParameter("id", este.getId());
-            List<PingState> b = query.getResultList();
-            if (b.size() != 1) {
-                System.out.println(".");
-                continue;
-            }
-            PingState latency = b.get(0);
-            FixedMillisecond timestamp = new FixedMillisecond(este.getTimestamp().getTime());
-
-            if (!latency.isValido()) {
+        for (MachineState este : this.amostras) {
+            PingState pingState = este.getPingState();
+            FixedMillisecond timestamp = new FixedMillisecond(este.getTimestampState().getTimestamp().getTime());
+            if (!pingState.isValido()) {
                 falhaPing.add(new TimeSeriesDataItem(timestamp, 100));
             } else {
                 falhaPing.add(new TimeSeriesDataItem(timestamp, 0));
             }
-            series.add(new TimeSeriesDataItem(timestamp, b.get(0).getLatency()));
+            series.add(new TimeSeriesDataItem(timestamp, pingState.getLatency()));
         }
         final TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.addSeries(series);

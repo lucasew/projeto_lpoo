@@ -9,6 +9,8 @@ import controller.DatabaseController;
 
 import java.util.List;
 
+import model.Machine;
+import model.MachineState;
 import model.TimestampState;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -17,6 +19,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.time.TimeSeriesCollection;
 
+import javax.persistence.Query;
 import javax.swing.*;
 
 /**
@@ -24,17 +27,20 @@ import javax.swing.*;
  * @author lucasew
  */
 public abstract class CommonChart extends JFrame {
-    List<TimestampState> amostras;
+    List<MachineState> amostras;
+    Machine machine;
 
-    public CommonChart(String titulo, String eixo) {
-        super(titulo);
+    public CommonChart(Machine machine, String titulo, String eixo) {
+        super(String.format("%s: %s", titulo, machine.getHostname()));
+        this.machine = machine;
 
-        this.amostras = DatabaseController.getInstance()
-                .createQuery("select t from TimestampState t")
-                .getResultList();
+        Query query = DatabaseController.getInstance()
+                .createQuery("select s from MachineState s where machine = :machine_id")
+                .setParameter("machine_id", machine);
+        this.amostras = query.getResultList();
         System.out.printf("Amostras: %d\n", this.amostras.size());
         JFreeChart chart = ChartFactory.createTimeSeriesChart(
-                titulo,
+                null,
                 "Tempo",
                 eixo,
                 buildDataset(),

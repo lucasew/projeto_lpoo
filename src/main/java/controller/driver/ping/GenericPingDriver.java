@@ -5,14 +5,14 @@
  */
 package controller.driver.ping;
 
+import controller.driver.GenericDriver;
+
 import java.io.IOException;
 
 /**
  *
  * @author a2049031
  */
-public interface GenericPingDriver {
-    void Initialize() throws UnsupportedOperationException;
-    
-    Integer pingTo(String server) throws IOException, InterruptedException;
+public abstract class GenericPingDriver extends GenericDriver {
+    public abstract Integer pingTo(String server) throws IOException, InterruptedException;
 }

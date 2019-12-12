@@ -1,14 +1,12 @@
 package controller.gather;
 
 import controller.driver.power.GenericPowerDriver;
+import controller.driver.power.PowerDriverFallbacker;
 import model.BatteryState;
 import model.TimestampState;
 
 public class PowerGather {
-    private final GenericPowerDriver driver;
-    public PowerGather(GenericPowerDriver driver) {
-        this.driver = driver;
-    }
+    private final GenericPowerDriver driver = PowerDriverFallbacker.getDriver();
 
     public BatteryState getState() {
         BatteryState state = new BatteryState();

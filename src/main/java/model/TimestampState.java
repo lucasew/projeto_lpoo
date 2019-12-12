@@ -19,11 +19,8 @@ public class TimestampState {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id private long id;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    private BatteryState batteryState;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    private PingState pingState;
+    @OneToOne
+    private MachineState machineState;
 
     @Override
     public boolean equals(Object o) {
@@ -32,11 +29,6 @@ public class TimestampState {
         TimestampState that = (TimestampState) o;
         return id == that.id &&
                 timestamp.equals(that.timestamp);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(timestamp, id, batteryState, pingState);
     }
 
     public Calendar getTimestamp() {
@@ -53,21 +45,5 @@ public class TimestampState {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public BatteryState getBatteryState() {
-        return batteryState;
-    }
-
-    public void setBatteryState(BatteryState batteryState) {
-        this.batteryState = batteryState;
-    }
-
-    public PingState getPingState() {
-        return pingState;
-    }
-
-    public void setPingState(PingState pingState) {
-        this.pingState = pingState;
     }
 }

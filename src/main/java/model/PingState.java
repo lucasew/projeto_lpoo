@@ -25,12 +25,10 @@ public class PingState implements Serializable {
         this.latency = latency;
     }
 
-    public PingState() {
-    }
+    public PingState() {}
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    private TimestampState timestamp;
-
+    @OneToOne
+    private MachineState machineState;
     private Integer latency;
 
     public long getId() {
@@ -41,20 +39,20 @@ public class PingState implements Serializable {
         this.id = id;
     }
 
-    public TimestampState getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(TimestampState timestamp) {
-        this.timestamp = timestamp;
-    }
-
     public Integer getLatency() {
         return latency;
     }
 
     public void setLatency(Integer latency) {
         this.latency = latency;
+    }
+
+    public MachineState getMachineState() {
+        return machineState;
+    }
+
+    public void setMachineState(MachineState machineState) {
+        this.machineState = machineState;
     }
 
     @Override

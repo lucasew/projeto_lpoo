@@ -9,14 +9,10 @@ import static java.lang.Integer.*;
 import static java.nio.file.Files.exists;
 import static java.nio.file.Files.readAllLines;
 
-class LinuxPowerDriver implements GenericPowerDriver {
+class LinuxPowerDriver extends GenericPowerDriver {
     public void Initialize() throws UnsupportedOperationException {
         if (!exists(Paths.get("/sys/class/power_supply")))
             throw new UnsupportedOperationException("Interfaces não disponiveis para consulta de nivel de energia");
-    }
-
-    LinuxPowerDriver() throws UnsupportedOperationException {
-        this.Initialize();
     }
 
     @Override

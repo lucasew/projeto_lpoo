@@ -6,7 +6,8 @@
 package controller.extractor;
 
 import controller.ImageProvider;
-import controller.reporter.PingReporter;
+import controller.capture.CaptureDaemon;
+import model.MachineState;
 import model.PingState;
 
 import javax.swing.ImageIcon;
@@ -16,21 +17,19 @@ import javax.swing.ImageIcon;
  * @author lucasew
  */
 public class PingStateExtractor implements StateExtractor {
-    PingReporter task;
     int badNetCriteria;
-    
-    public PingStateExtractor(PingReporter task, int badNetCriteria) {
-        this.task = task;
+
+    public PingStateExtractor(int badNetCriteria) {
         this.badNetCriteria = badNetCriteria;
     }
-    
+
     @Override
-    public ImageIcon getIcon() {
-        PingState latency = task.getLastState();
-        if (!latency.isValido()) {
+    public ImageIcon getIcon(MachineState state) {
+        PingState pingState = state.getPingState();
+        if (!pingState.isValido()) {
             return ImageProvider.getImage("/META-INF/icon/desconectado.png");
         }
-        if (latency.getLatency() > badNetCriteria) {
+        if (pingState.getLatency() > badNetCriteria) {
             return ImageProvider.getImage("/META-INF/icon/sinal_maisoumenos.png");
         } else {
             return ImageProvider.getImage("/META-INF/icon/sinal_bom.png");
@@ -38,8 +37,10 @@ public class PingStateExtractor implements StateExtractor {
     }
 
     @Override
-    public String getLabel() {
-        PingState latency = task.getLastState();
-        return latency.isValido() ? String.format("Conectado: %d ms",  latency.getLatency()) : "Sem conexão";
+    public String getLabel(MachineState state) {
+        PingState pingState = state.getPingState();
+        return pingState == null
+            ? "[DESCONHEDIDO]"
+            : pingState.isValido() ? String.format("Conectado: %d ms",  pingState.getLatency()) : "Sem conexão";
     }
 }

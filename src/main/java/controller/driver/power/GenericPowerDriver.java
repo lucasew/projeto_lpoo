@@ -1,10 +1,9 @@
 package controller.driver.power;
 
+import controller.driver.GenericDriver;
 import model.PowerState;
 
-public interface GenericPowerDriver {
-    void Initialize() throws UnsupportedOperationException;
-
-    PowerState getState();
-    int getChargeLevel();
+public abstract class GenericPowerDriver extends GenericDriver {
+    public abstract PowerState getState();
+    public abstract int getChargeLevel();
 }

@@ -5,10 +5,15 @@
  */
 package controller.facade;
 
+import controller.capture.CaptureDaemon;
+import controller.database.MachineController;
 import controller.reporter.BatteryReporter;
 import controller.reporter.PingReporter;
 import controller.reporter.Reporter;
+
 import java.util.ArrayList;
+
+import model.Machine;
 import view.UIDashboard;
 
 /**
@@ -16,16 +21,31 @@ import view.UIDashboard;
  * @author lucasew
  */
 public class MainFacade implements Runnable {
-    public void run() {
-        ArrayList<Reporter> reporters = new ArrayList<Reporter>();
-        PingReporter pingt = new PingReporter("google.com");
-        BatteryReporter powert = new BatteryReporter();
-        reporters.add(pingt);
-        reporters.add(powert);
-        Thread th = new Thread(new CaptureDaemon(1000, reporters));
-        th.start();
-        UIDashboard dashboard = new UIDashboard(pingt, powert);
+    CaptureDaemon captureDaemon;
+    Machine machine;
+
+    private ArrayList<Reporter> getReporters() {
+        ArrayList<Reporter> reporters = new ArrayList<>();
+        reporters.add(new PingReporter("google.com"));
+        reporters.add(new BatteryReporter());
+        return reporters;
+    }
+
+    private UIDashboard getDashboard() {
+        UIDashboard dashboard = new UIDashboard(machine);
         dashboard.setVisible(true);
-        dashboard.run();
+        return dashboard;
+    }
+
+    public MainFacade(String hostname) {
+        machine = MachineController.registerMachine(hostname);
+        captureDaemon = new CaptureDaemon(1000, getReporters(), machine);
+    }
+
+    public void run() {
+        UIDashboard dashboard = getDashboard();
+        captureDaemon.addListener(dashboard);
+        new Thread(captureDaemon, "CaptureDaemon").start();
+        new Thread(dashboard, "Dashboard").start();
     }
 }
