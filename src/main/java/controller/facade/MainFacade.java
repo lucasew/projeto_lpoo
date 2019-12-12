@@ -5,6 +5,7 @@
  */
 package controller.facade;
 
+import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader;
 import controller.capture.CaptureDaemon;
 import controller.database.MachineController;
 import controller.reporter.BatteryReporter;
@@ -13,8 +14,12 @@ import controller.reporter.Reporter;
 
 import java.util.ArrayList;
 
-import model.Machine;
+import model.exception.SingleInstanceException;
+import model.vo.Machine;
+import view.MessageBoxBuilder;
 import view.UIDashboard;
+
+import javax.swing.*;
 
 /**
  *
@@ -36,8 +41,12 @@ public class MainFacade implements Runnable {
 
     public void run() {
         CaptureDaemon captureDaemon = new CaptureDaemon(1000, getReporters(), machine);
-        UIDashboard ui = new UIDashboard(machine, captureDaemon);
-        ui.setVisible(true);
-        new Thread(ui, "Dashboard").start();
+        try {
+            UIDashboard ui = new UIDashboard(machine, captureDaemon);
+            ui.setVisible(true);
+            new Thread(ui, "Dashboard").start();
+        } catch (SingleInstanceException e) {
+            MessageBoxBuilder.showError("Não é possível criar mais de uma janela deste tipo");
+        }
     }
 }

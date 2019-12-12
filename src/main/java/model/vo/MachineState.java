@@ -1,4 +1,4 @@
-package model;
+package model.vo;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;

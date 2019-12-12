@@ -1,6 +1,6 @@
 package controller.driver.power;
 
-import model.PowerState;
+import model.vo.PowerState;
 
 import java.io.IOException;
 import java.nio.file.Paths;

@@ -5,7 +5,7 @@
  */
 package controller.driver.power;
 
-import model.PowerState;
+import model.vo.PowerState;
 
 /**
  *

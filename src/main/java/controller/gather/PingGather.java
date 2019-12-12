@@ -2,10 +2,9 @@ package controller.gather;
 
 import controller.driver.ping.GenericPingDriver;
 import controller.driver.ping.PingDriverFallbacker;
-import model.TimestampState;
 
 import java.io.IOException;
-import model.PingState;
+import model.vo.PingState;
 
 public class PingGather {
     private final GenericPingDriver driver = PingDriverFallbacker.getDriver();

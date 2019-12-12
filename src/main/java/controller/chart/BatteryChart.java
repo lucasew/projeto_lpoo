@@ -5,17 +5,17 @@
  */
 package controller.chart;
 
-import controller.DatabaseController;
 import controller.database.MachineController;
-import model.*;
+import model.vo.BatteryState;
+import model.vo.Machine;
+import model.vo.MachineState;
+import model.vo.PowerState;
 import org.jfree.data.time.FixedMillisecond;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.time.TimeSeriesDataItem;
 
-import javax.persistence.Query;
 import javax.swing.*;
-import java.util.List;
 
 /**
  *

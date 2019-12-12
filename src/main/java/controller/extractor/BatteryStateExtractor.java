@@ -6,9 +6,8 @@
 package controller.extractor;
 
 import controller.ImageProvider;
-import controller.capture.CaptureDaemon;
-import model.BatteryState;
-import model.MachineState;
+import model.vo.BatteryState;
+import model.vo.MachineState;
 
 import javax.swing.*;
 

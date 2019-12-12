@@ -1,6 +1,6 @@
 package controller.machine;
 
-import model.Machine;
+import model.vo.Machine;
 
 public class MachineController {
     Machine machine;

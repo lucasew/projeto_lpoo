@@ -1,10 +1,8 @@
 package controller.reporter;
 
-import controller.driver.power.GenericPowerDriver;
-import controller.driver.power.PowerDriverFallbacker;
 import controller.gather.PowerGather;
-import model.BatteryState;
-import model.MachineState;
+import model.vo.BatteryState;
+import model.vo.MachineState;
 
 import javax.persistence.EntityManager;
 

@@ -1,12 +1,10 @@
 package controller.database;
 
 import controller.DatabaseController;
-import model.Machine;
-import org.hibernate.metamodel.relational.Database;
+import model.vo.Machine;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.xml.crypto.Data;
 import java.util.List;
 
 public class MachineController {

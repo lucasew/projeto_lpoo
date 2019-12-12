@@ -7,7 +7,7 @@ package view.components;
 
 import controller.capture.CaptureListener;
 import controller.extractor.StateExtractor;
-import model.MachineState;
+import model.vo.MachineState;
 
 import javax.swing.JButton;
 

@@ -3,9 +3,9 @@ package controller.capture;
 import controller.DatabaseController;
 import controller.lifecycle.WindowCounter;
 import controller.reporter.Reporter;
-import model.Machine;
-import model.MachineState;
-import model.TimestampState;
+import model.vo.Machine;
+import model.vo.MachineState;
+import model.vo.TimestampState;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;

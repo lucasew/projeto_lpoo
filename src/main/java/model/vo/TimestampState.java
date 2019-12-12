@@ -1,8 +1,7 @@
-package model;
+package model.vo;
 
 import javax.persistence.*;
 import java.util.Calendar;
-import java.util.Objects;
 
 @Entity
 public class TimestampState {

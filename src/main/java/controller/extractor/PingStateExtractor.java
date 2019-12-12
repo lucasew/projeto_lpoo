@@ -6,9 +6,8 @@
 package controller.extractor;
 
 import controller.ImageProvider;
-import controller.capture.CaptureDaemon;
-import model.MachineState;
-import model.PingState;
+import model.vo.MachineState;
+import model.vo.PingState;
 
 import javax.swing.ImageIcon;
 

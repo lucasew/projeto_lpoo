@@ -1,6 +1,6 @@
 package controller.reporter;
 
-import model.MachineState;
+import model.vo.MachineState;
 
 import javax.persistence.EntityManager;
 

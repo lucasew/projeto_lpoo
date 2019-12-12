@@ -1,7 +1,7 @@
 package controller.driver.power;
 
 import controller.driver.GenericDriver;
-import model.PowerState;
+import model.vo.PowerState;
 
 public abstract class GenericPowerDriver extends GenericDriver {
     public abstract PowerState getState();

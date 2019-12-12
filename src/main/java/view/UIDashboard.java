@@ -13,21 +13,23 @@ import controller.chart.BatteryChart;
 import controller.chart.PingChart;
 import controller.extractor.BatteryStateExtractor;
 import controller.extractor.PingStateExtractor;
-import model.Machine;
+import model.exception.SingleInstanceException;
+import model.vo.Machine;
 import view.components.ChartViewer;
-
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 /**
  *
  * @author lucasew
  */
 public class UIDashboard extends javax.swing.JFrame implements Runnable, Closeable {
-
+    private static int instancias = 0;
     private Machine machine;
     private CaptureDaemon captureDaemon;
-    public UIDashboard(Machine machine, CaptureDaemon daemon) {
+    public UIDashboard(Machine machine, CaptureDaemon daemon) throws SingleInstanceException {
+        if (instancias > 0) {
+            throw new SingleInstanceException("Apenas uma instância desta view pode existir ao mesmo tempo");
+        }
+        instancias++;
         this.machine = machine;
         this.captureDaemon = daemon;
         initComponents();
@@ -38,6 +40,7 @@ public class UIDashboard extends javax.swing.JFrame implements Runnable, Closeab
     }
 
     public void close() {
+        instancias--;
         WindowCounter.decrement();
         this.captureDaemon.stop();
         System.out.println("Parando daemon...");

@@ -1,4 +1,4 @@
-package model;
+package model.vo;
 
 public enum PowerState {
     AC, // Na tomada, sem bateria

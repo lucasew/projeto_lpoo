@@ -2,18 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eebb3947-90ac-491e-821a-d7506fdfd790" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/lifecycle/Closeable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/lifecycle/DestroyWindowEventHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/lifecycle/WindowCounter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/components/ChartViewer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/exception/SingleInstanceException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/MessageBoxBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/capture/CaptureDaemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/capture/CaptureDaemon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/capture/CaptureListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/capture/CaptureListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/chart/BatteryChart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/chart/BatteryChart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/chart/CommonChart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/chart/CommonChart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/chart/PingChart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/chart/PingChart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/database/MachineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/database/MachineController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Machine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Machine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/UIDashboard.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/UIDashboard.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/driver/power/GenericPowerDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/driver/power/GenericPowerDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/driver/power/LinuxPowerDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/driver/power/LinuxPowerDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/driver/power/MockedPowerDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/driver/power/MockedPowerDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/extractor/BatteryStateExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/extractor/BatteryStateExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/extractor/PingStateExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/extractor/PingStateExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/extractor/StateExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/extractor/StateExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/facade/MainFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/facade/MainFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gather/PingGather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gather/PingGather.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/gather/PowerGather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/gather/PowerGather.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/machine/MachineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/machine/MachineController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/reporter/BatteryReporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/reporter/BatteryReporter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/reporter/PingReporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/reporter/PingReporter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/reporter/Reporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/reporter/Reporter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/BatteryState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/vo/BatteryState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Machine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/vo/Machine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/MachineState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/vo/MachineState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PingState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/vo/PingState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PowerState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/vo/PowerState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/TimestampState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/vo/TimestampState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/vo/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/UIDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/UIDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/components/DashboardButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/components/DashboardButton.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,8 +60,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -243,37 +262,37 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="471" y="126" key="FileChooserDialogImpl/0.27.1366.741@0.27.1366.741" timestamp="1576149081480" />
-    <state width="1320" height="192" key="GridCell.Tab.0.bottom" timestamp="1576187080412">
+    <state width="1320" height="192" key="GridCell.Tab.0.bottom" timestamp="1576192585013">
       <screen x="0" y="27" width="2732" height="741" />
     </state>
     <state width="1234" height="192" key="GridCell.Tab.0.bottom/0.27.1280.693@0.27.1280.693" timestamp="1576153462097" />
     <state width="1320" height="192" key="GridCell.Tab.0.bottom/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575918761382" />
     <state width="1320" height="192" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1576157246573" />
-    <state width="1320" height="192" key="GridCell.Tab.0.bottom/0.27.2732.741@0.27.2732.741" timestamp="1576187080412" />
+    <state width="1320" height="192" key="GridCell.Tab.0.bottom/0.27.2732.741@0.27.2732.741" timestamp="1576192585013" />
     <state width="1320" height="192" key="GridCell.Tab.0.bottom/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576088423275" />
-    <state width="1320" height="192" key="GridCell.Tab.0.center" timestamp="1576187080411">
+    <state width="1320" height="192" key="GridCell.Tab.0.center" timestamp="1576192585013">
       <screen x="0" y="27" width="2732" height="741" />
     </state>
     <state width="1234" height="192" key="GridCell.Tab.0.center/0.27.1280.693@0.27.1280.693" timestamp="1576153462096" />
     <state width="1320" height="192" key="GridCell.Tab.0.center/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575918761381" />
     <state width="1320" height="192" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1576157246572" />
-    <state width="1320" height="192" key="GridCell.Tab.0.center/0.27.2732.741@0.27.2732.741" timestamp="1576187080411" />
+    <state width="1320" height="192" key="GridCell.Tab.0.center/0.27.2732.741@0.27.2732.741" timestamp="1576192585013" />
     <state width="1320" height="192" key="GridCell.Tab.0.center/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576088423275" />
-    <state width="1320" height="192" key="GridCell.Tab.0.left" timestamp="1576187080410">
+    <state width="1320" height="192" key="GridCell.Tab.0.left" timestamp="1576192585012">
       <screen x="0" y="27" width="2732" height="741" />
     </state>
     <state width="1234" height="192" key="GridCell.Tab.0.left/0.27.1280.693@0.27.1280.693" timestamp="1576153462096" />
     <state width="1320" height="192" key="GridCell.Tab.0.left/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575918761381" />
     <state width="1320" height="192" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1576157246571" />
-    <state width="1320" height="192" key="GridCell.Tab.0.left/0.27.2732.741@0.27.2732.741" timestamp="1576187080410" />
+    <state width="1320" height="192" key="GridCell.Tab.0.left/0.27.2732.741@0.27.2732.741" timestamp="1576192585012" />
     <state width="1320" height="192" key="GridCell.Tab.0.left/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576088423275" />
-    <state width="1320" height="192" key="GridCell.Tab.0.right" timestamp="1576187080411">
+    <state width="1320" height="192" key="GridCell.Tab.0.right" timestamp="1576192585013">
       <screen x="0" y="27" width="2732" height="741" />
     </state>
     <state width="1234" height="192" key="GridCell.Tab.0.right/0.27.1280.693@0.27.1280.693" timestamp="1576153462097" />
     <state width="1320" height="192" key="GridCell.Tab.0.right/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575918761382" />
     <state width="1320" height="192" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1576157246573" />
-    <state width="1320" height="192" key="GridCell.Tab.0.right/0.27.2732.741@0.27.2732.741" timestamp="1576187080411" />
+    <state width="1320" height="192" key="GridCell.Tab.0.right/0.27.2732.741@0.27.2732.741" timestamp="1576192585013" />
     <state width="1320" height="192" key="GridCell.Tab.0.right/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576088423275" />
     <state width="1320" height="239" key="GridCell.Tab.1.bottom" timestamp="1576173360784">
       <screen x="0" y="27" width="2732" height="741" />
@@ -315,12 +334,12 @@
       <screen x="0" y="27" width="2732" height="741" />
     </state>
     <state x="1713" y="183" key="run.anything.popup/0.27.2732.741@0.27.2732.741" timestamp="1576167378546" />
-    <state x="692" y="89" width="1344" height="160" key="search.everywhere.popup" timestamp="1576186779527">
+    <state x="692" y="89" width="1344" height="160" key="search.everywhere.popup" timestamp="1576192795253">
       <screen x="0" y="27" width="2732" height="741" />
     </state>
     <state x="346" y="89" width="672" height="160" key="search.everywhere.popup/0.27.1366.741/1366.0.1366.768@0.27.1366.741" timestamp="1575916926321" />
     <state x="346" y="89" width="672" height="160" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1576157654874" />
-    <state x="692" y="89" width="1344" height="160" key="search.everywhere.popup/0.27.2732.741@0.27.2732.741" timestamp="1576186779527" />
+    <state x="692" y="89" width="1344" height="160" key="search.everywhere.popup/0.27.2732.741@0.27.2732.741" timestamp="1576192795253" />
     <state x="1712" y="64" width="672" height="166" key="search.everywhere.popup/1366.0.1366.768/0.27.1366.741@1366.0.1366.768" timestamp="1576001247344" />
   </component>
 </project>

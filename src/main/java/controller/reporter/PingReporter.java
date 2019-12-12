@@ -3,14 +3,11 @@ package controller.reporter;
 import controller.driver.ping.GenericPingDriver;
 import controller.driver.ping.PingDriverFallbacker;
 import controller.gather.PingGather;
-import model.MachineState;
-import model.PingState;
-import model.TimestampState;
+import model.vo.MachineState;
+import model.vo.PingState;
 
 import javax.persistence.EntityManager;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class PingReporter implements Reporter {
     private String hostToPing;

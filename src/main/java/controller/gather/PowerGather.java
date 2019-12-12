@@ -2,8 +2,7 @@ package controller.gather;
 
 import controller.driver.power.GenericPowerDriver;
 import controller.driver.power.PowerDriverFallbacker;
-import model.BatteryState;
-import model.TimestampState;
+import model.vo.BatteryState;
 
 public class PowerGather {
     private final GenericPowerDriver driver = PowerDriverFallbacker.getDriver();
