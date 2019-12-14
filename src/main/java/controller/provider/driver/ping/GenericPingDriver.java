@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.driver.ping;
+package controller.provider.driver.ping;
 
-import controller.driver.GenericDriver;
+import controller.provider.driver.GenericDriver;
 
 import java.io.IOException;
 

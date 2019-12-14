@@ -1,8 +1,8 @@
 package controller.reporter;
 
-import controller.driver.ping.GenericPingDriver;
-import controller.driver.ping.PingDriverFallbacker;
-import controller.gather.PingGather;
+import controller.provider.driver.ping.GenericPingDriver;
+import controller.provider.driver.ping.PingDriverFallbacker;
+import controller.provider.PingProvider;
 import model.vo.MachineState;
 import model.vo.PingState;
 
@@ -11,11 +11,11 @@ import java.io.IOException;
 
 public class PingReporter implements Reporter {
     private String hostToPing;
-    private PingGather gather;
+    private PingProvider gather;
 
     public PingReporter(String hostToPing) {
         GenericPingDriver driver = PingDriverFallbacker.getDriver();
-        gather = new PingGather(hostToPing);
+        gather = new PingProvider(hostToPing);
     }
 
     @Override

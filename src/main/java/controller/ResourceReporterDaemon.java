@@ -1,6 +1,7 @@
-package controller.capture;
+package controller;
 
 import controller.DatabaseController;
+import controller.MachineStateListener;
 import controller.lifecycle.WindowCounter;
 import controller.reporter.Reporter;
 import model.vo.Machine;
@@ -11,15 +12,15 @@ import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CaptureDaemon implements Runnable {
+public class ResourceReporterDaemon implements Runnable {
     EntityManager database;
     List<Reporter> reporters;
     Machine machine;
     int sleepTime;
     MachineState lastState;
-    List<CaptureListener> listeners = new ArrayList<>();
+    List<MachineStateListener> listeners = new ArrayList<>();
 
-    public CaptureDaemon(int sleepTime, List<Reporter> reporters, Machine machine) {
+    public ResourceReporterDaemon(int sleepTime, List<Reporter> reporters, Machine machine) {
         this.sleepTime = sleepTime;
         this.reporters = reporters;
         this.machine = machine;
@@ -27,7 +28,7 @@ public class CaptureDaemon implements Runnable {
         lastState = new MachineState();
     }
 
-    public void addListener(CaptureListener listener) {
+    public void addListener(MachineStateListener listener) {
         listeners.add(listener);
     }
 
@@ -51,8 +52,8 @@ public class CaptureDaemon implements Runnable {
                         lastState.setTimestampState(new TimestampState());
                         lastState.setId(0); // Para não ficar atualizando a mesma coisa
                         lastState.setMachine(machine);
-                        for (CaptureListener listener : listeners) { // Notifica quem pediu que o estado mudou
-                            listener.handleMachineStateCapture(lastState);
+                        for (MachineStateListener listener : listeners) { // Notifica quem pediu que o estado mudou
+                            listener.handleMachineStateChange(lastState);
                         }
                         database.persist(lastState);
                         database.getTransaction().commit();

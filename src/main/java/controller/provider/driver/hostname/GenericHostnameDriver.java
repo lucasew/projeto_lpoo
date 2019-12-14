@@ -1,6 +1,6 @@
-package controller.driver.hostname;
+package controller.provider.driver.hostname;
 
-import controller.driver.GenericDriver;
+import controller.provider.driver.GenericDriver;
 
 import java.io.IOException;
 

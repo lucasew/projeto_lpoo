@@ -1,16 +1,16 @@
 package controller.reporter;
 
-import controller.gather.PowerGather;
+import controller.provider.PowerProvider;
 import model.vo.BatteryState;
 import model.vo.MachineState;
 
 import javax.persistence.EntityManager;
 
 public class BatteryReporter implements Reporter {
-    PowerGather gather;
+    PowerProvider gather;
 
     public BatteryReporter() {
-        this.gather = new PowerGather();
+        this.gather = new PowerProvider();
     }
 
     @Override

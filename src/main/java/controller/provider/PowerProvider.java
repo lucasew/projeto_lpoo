@@ -1,10 +1,10 @@
-package controller.gather;
+package controller.provider;
 
-import controller.driver.power.GenericPowerDriver;
-import controller.driver.power.PowerDriverFallbacker;
+import controller.provider.driver.power.GenericPowerDriver;
+import controller.provider.driver.power.PowerDriverFallbacker;
 import model.vo.BatteryState;
 
-public class PowerGather {
+public class PowerProvider {
     private final GenericPowerDriver driver = PowerDriverFallbacker.getDriver();
 
     public BatteryState getState() {

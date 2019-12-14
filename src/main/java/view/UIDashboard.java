@@ -6,11 +6,11 @@
 package view;
 
 import controller.database.MachineController;
-import controller.driver.hostname.HostnameDriverFallbacker;
+import controller.provider.HostnameProvider;
 import controller.lifecycle.Closeable;
 import controller.lifecycle.DestroyWindowEventHandler;
 import controller.lifecycle.WindowCounter;
-import controller.capture.CaptureDaemon;
+import controller.ResourceReporterDaemon;
 import controller.chart.BatteryChart;
 import controller.chart.PingChart;
 import controller.extractor.BatteryStateExtractor;
@@ -33,7 +33,7 @@ import java.util.List;
 public class UIDashboard extends javax.swing.JFrame implements Closeable {
     private static int instancias = 0;
     private Machine machine;
-    private CaptureDaemon captureDaemon;
+    private ResourceReporterDaemon resourceReporterDaemon;
 
     private static List<Reporter> getDefaultReporters() {
         ArrayList<Reporter> ret = new ArrayList<Reporter>() {{
@@ -48,7 +48,7 @@ public class UIDashboard extends javax.swing.JFrame implements Closeable {
     }
 
     public UIDashboard() throws IOException, SingleInstanceException {
-        this(HostnameDriverFallbacker.getDriver().getHostname());
+        this(new HostnameProvider().getHostname());
     }
 
     public UIDashboard(String hostname) throws SingleInstanceException {
@@ -56,7 +56,7 @@ public class UIDashboard extends javax.swing.JFrame implements Closeable {
     }
     public UIDashboard(String hostname, List<Reporter> reporters) throws SingleInstanceException {
         this.machine = MachineController.registerMachine(hostname);
-        this.captureDaemon = new CaptureDaemon(1000, reporters, machine);
+        this.resourceReporterDaemon = new ResourceReporterDaemon(1000, reporters, machine);
         if (instancias > 0) {
             throw new SingleInstanceException("Apenas uma instância desta view pode existir ao mesmo tempo");
         }
@@ -72,16 +72,16 @@ public class UIDashboard extends javax.swing.JFrame implements Closeable {
     public void close() {
         instancias--;
         WindowCounter.decrement();
-        this.captureDaemon.stop();
+        this.resourceReporterDaemon.stop();
         System.out.println("Parando daemon...");
     }
 
     private void run() {
-        captureDaemon.addListener(this.btnDashboardPing);
-        captureDaemon.addListener(this.btnDashboardBattery);
+        resourceReporterDaemon.addListener(this.btnDashboardPing);
+        resourceReporterDaemon.addListener(this.btnDashboardBattery);
         this.btnDashboardPing.setExtractor(new PingStateExtractor(1000));
         this.btnDashboardBattery.setExtractor(new BatteryStateExtractor());
-        new Thread(captureDaemon).start();
+        new Thread(resourceReporterDaemon).start();
     }
 
     /**

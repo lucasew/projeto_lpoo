@@ -1,6 +1,6 @@
-package controller.driver.power;
+package controller.provider.driver.power;
 
-import controller.driver.GenericDriver;
+import controller.provider.driver.GenericDriver;
 import model.vo.PowerState;
 
 public abstract class GenericPowerDriver extends GenericDriver {

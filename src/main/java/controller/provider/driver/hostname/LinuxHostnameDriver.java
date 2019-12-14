@@ -1,4 +1,4 @@
-package controller.driver.hostname;
+package controller.provider.driver.hostname;
 
 import java.io.BufferedReader;
 import java.io.IOException;

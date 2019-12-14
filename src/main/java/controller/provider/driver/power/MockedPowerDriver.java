@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.driver.power;
+package controller.provider.driver.power;
 
 import model.vo.PowerState;
 

@@ -5,7 +5,7 @@
  */
 package view.components;
 
-import controller.capture.CaptureListener;
+import controller.MachineStateListener;
 import controller.extractor.StateExtractor;
 import model.vo.MachineState;
 
@@ -15,7 +15,7 @@ import javax.swing.JButton;
  *
  * @author lucasew
  */
-public class DashboardButton extends JButton implements CaptureListener {
+public class DashboardButton extends JButton implements MachineStateListener {
 
     StateExtractor extractor;
     public DashboardButton() {
@@ -31,7 +31,7 @@ public class DashboardButton extends JButton implements CaptureListener {
     }
 
     @Override
-    public void handleMachineStateCapture(MachineState state) {
+    public void handleMachineStateChange(MachineState state) {
         if (extractor != null) {
             this.setIcon(extractor.getIcon(state));
             this.setText(extractor.getLabel(state));

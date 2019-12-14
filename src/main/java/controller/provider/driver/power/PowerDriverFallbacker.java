@@ -1,4 +1,4 @@
-package controller.driver.power;
+package controller.provider.driver.power;
 
 import java.util.ArrayList;
 import java.util.List;

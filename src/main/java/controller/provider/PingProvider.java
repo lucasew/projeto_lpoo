@@ -1,15 +1,15 @@
-package controller.gather;
+package controller.provider;
 
-import controller.driver.ping.GenericPingDriver;
-import controller.driver.ping.PingDriverFallbacker;
+import controller.provider.driver.ping.GenericPingDriver;
+import controller.provider.driver.ping.PingDriverFallbacker;
 
 import java.io.IOException;
 import model.vo.PingState;
 
-public class PingGather {
+public class PingProvider {
     private final GenericPingDriver driver = PingDriverFallbacker.getDriver();
     private final String hostToPing;
-    public PingGather(String hostToPing) {
+    public PingProvider(String hostToPing) {
         this.hostToPing = hostToPing;
     }
 

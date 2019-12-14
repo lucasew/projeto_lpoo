@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.driver.ping;
+package controller.provider.driver.ping;
 
 import java.io.BufferedReader;
 import java.io.IOException;
