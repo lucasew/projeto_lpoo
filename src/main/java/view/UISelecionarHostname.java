@@ -11,16 +11,11 @@ import controller.lifecycle.WindowCounter;
 import controller.chart.BatteryChart;
 import controller.chart.PingChart;
 import controller.database.MachineController;
-import controller.driver.hostname.HostnameDriverFallbacker;
-import controller.facade.MainFacade;
-import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import view.components.ChartViewer;
-
-import javax.swing.*;
 
 /**
  *
@@ -35,7 +30,10 @@ public class UISelecionarHostname extends javax.swing.JFrame implements Closeabl
     }};
     String selected = machines.get(0);
 
-    
+    public static void main(String[] args) {
+        new UISelecionarHostname().setVisible(true);
+    }
+
     /**
      * Creates new form UISelecionarHostname
      */
@@ -71,7 +69,7 @@ public class UISelecionarHostname extends javax.swing.JFrame implements Closeabl
         lblInstrucao.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblInstrucao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInstrucao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/icon/device.png"))); // NOI18N
-        lblInstrucao.setText("Selecione o dispositivo que deseja exibir o histórico");
+        lblInstrucao.setText("Selecione o dispositivo que deseja exibir o relatório");
         lblInstrucao.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         lblInstrucao.setFocusable(false);
         lblInstrucao.setMaximumSize(new java.awt.Dimension(730, 72));
@@ -141,41 +139,6 @@ public class UISelecionarHostname extends javax.swing.JFrame implements Closeabl
     private void btnInternetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInternetActionPerformed
         new ChartViewer(new PingChart(MachineController.getMachine(this.selected))).run();
     }//GEN-LAST:event_btnInternetActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UISelecionarHostname.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UISelecionarHostname.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UISelecionarHostname.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UISelecionarHostname.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UISelecionarHostname().setVisible(true);
-            }
-        });
-    }
 
     public List<String> getMachines() {
         return machines;

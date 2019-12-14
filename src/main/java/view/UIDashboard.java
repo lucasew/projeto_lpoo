@@ -43,6 +43,10 @@ public class UIDashboard extends javax.swing.JFrame implements Runnable, Closeab
         return ret;
     }
 
+    public static void main(String[] args) throws IOException, SingleInstanceException {
+        new UIDashboard().setVisible(true);
+    }
+
     public UIDashboard() throws IOException, SingleInstanceException {
         this(HostnameDriverFallbacker.getDriver().getHostname());
     }
@@ -94,6 +98,7 @@ public class UIDashboard extends javax.swing.JFrame implements Runnable, Closeab
         btnDashboardBattery = new view.components.DashboardButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         btnDashboardPing.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/icon/desconectado.png"))); // NOI18N
         btnDashboardPing.setText("Sem informações");
