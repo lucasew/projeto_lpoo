@@ -65,7 +65,6 @@ public class UISelecionarHostname extends javax.swing.JFrame implements Closeabl
         comboSelecao = new javax.swing.JComboBox<>();
         btnBateria = new javax.swing.JButton();
         btnInternet = new javax.swing.JButton();
-        btnBateria1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,14 +100,6 @@ public class UISelecionarHostname extends javax.swing.JFrame implements Closeabl
             }
         });
 
-        btnBateria1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/META-INF/icon/captura_dados.png"))); // NOI18N
-        btnBateria1.setText("Iniciar Coleta de Dados");
-        btnBateria1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBateria1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,11 +108,9 @@ public class UISelecionarHostname extends javax.swing.JFrame implements Closeabl
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnInternet, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnInternet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBateria1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBateria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnBateria, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(comboSelecao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblInstrucao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -136,8 +125,7 @@ public class UISelecionarHostname extends javax.swing.JFrame implements Closeabl
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInternet, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBateria, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBateria1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBateria, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -153,14 +141,6 @@ public class UISelecionarHostname extends javax.swing.JFrame implements Closeabl
     private void btnInternetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInternetActionPerformed
         new ChartViewer(new PingChart(MachineController.getMachine(this.selected))).run();
     }//GEN-LAST:event_btnInternetActionPerformed
-
-    private void btnBateria1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBateria1ActionPerformed
-        try {
-            new MainFacade(HostnameDriverFallbacker.getDriver().getHostname()).run();
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, null, "Não foi possível detectar o hostname desta máquina!", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnBateria1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,7 +195,6 @@ public class UISelecionarHostname extends javax.swing.JFrame implements Closeabl
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBateria;
-    private javax.swing.JButton btnBateria1;
     private javax.swing.JButton btnInternet;
     private javax.swing.JComboBox<String> comboSelecao;
     private javax.swing.JLabel lblInstrucao;

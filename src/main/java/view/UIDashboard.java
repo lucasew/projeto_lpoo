@@ -5,6 +5,8 @@
  */
 package view;
 
+import controller.database.MachineController;
+import controller.driver.hostname.HostnameDriverFallbacker;
 import controller.lifecycle.Closeable;
 import controller.lifecycle.DestroyWindowEventHandler;
 import controller.lifecycle.WindowCounter;
@@ -13,9 +15,16 @@ import controller.chart.BatteryChart;
 import controller.chart.PingChart;
 import controller.extractor.BatteryStateExtractor;
 import controller.extractor.PingStateExtractor;
+import controller.reporter.BatteryReporter;
+import controller.reporter.PingReporter;
+import controller.reporter.Reporter;
 import model.exception.SingleInstanceException;
 import model.vo.Machine;
 import view.components.ChartViewer;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -25,13 +34,29 @@ public class UIDashboard extends javax.swing.JFrame implements Runnable, Closeab
     private static int instancias = 0;
     private Machine machine;
     private CaptureDaemon captureDaemon;
-    public UIDashboard(Machine machine, CaptureDaemon daemon) throws SingleInstanceException {
+
+    private static List<Reporter> getDefaultReporters() {
+        ArrayList<Reporter> ret = new ArrayList<Reporter>() {{
+            add(new PingReporter("google.com"));
+            add(new BatteryReporter());
+        }};
+        return ret;
+    }
+
+    public UIDashboard() throws IOException, SingleInstanceException {
+        this(HostnameDriverFallbacker.getDriver().getHostname());
+    }
+
+    public UIDashboard(String hostname) throws SingleInstanceException {
+        this(hostname, getDefaultReporters());
+    }
+    public UIDashboard(String hostname, List<Reporter> reporters) throws SingleInstanceException {
+        this.machine = MachineController.registerMachine(hostname);
+        this.captureDaemon = new CaptureDaemon(1000, reporters, machine);
         if (instancias > 0) {
             throw new SingleInstanceException("Apenas uma instância desta view pode existir ao mesmo tempo");
         }
         instancias++;
-        this.machine = machine;
-        this.captureDaemon = daemon;
         initComponents();
         this.setTitle("Dashboard - Monitor de Recursos");
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

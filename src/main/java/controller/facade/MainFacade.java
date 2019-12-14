@@ -12,6 +12,7 @@ import controller.reporter.BatteryReporter;
 import controller.reporter.PingReporter;
 import controller.reporter.Reporter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import model.exception.SingleInstanceException;
@@ -40,13 +41,14 @@ public class MainFacade implements Runnable {
     }
 
     public void run() {
-        CaptureDaemon captureDaemon = new CaptureDaemon(1000, getReporters(), machine);
         try {
-            UIDashboard ui = new UIDashboard(machine, captureDaemon);
+            UIDashboard ui = new UIDashboard();
             ui.setVisible(true);
             new Thread(ui, "Dashboard").start();
         } catch (SingleInstanceException e) {
             MessageBoxBuilder.showError("Não é possível criar mais de uma janela deste tipo");
+        } catch (IOException e) {
+            MessageBoxBuilder.showError("Erro ao obter nome da máquina");
         }
     }
 }
