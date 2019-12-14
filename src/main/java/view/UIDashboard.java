@@ -30,7 +30,7 @@ import java.util.List;
  *
  * @author lucasew
  */
-public class UIDashboard extends javax.swing.JFrame implements Runnable, Closeable {
+public class UIDashboard extends javax.swing.JFrame implements Closeable {
     private static int instancias = 0;
     private Machine machine;
     private CaptureDaemon captureDaemon;
@@ -66,7 +66,7 @@ public class UIDashboard extends javax.swing.JFrame implements Runnable, Closeab
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         WindowCounter.increment();
         this.addWindowListener(new DestroyWindowEventHandler(this));
-        setResizable(false);
+        this.run();
     }
 
     public void close() {
@@ -76,13 +76,12 @@ public class UIDashboard extends javax.swing.JFrame implements Runnable, Closeab
         System.out.println("Parando daemon...");
     }
 
-    @Override
-    public void run() {
+    private void run() {
         captureDaemon.addListener(this.btnDashboardPing);
         captureDaemon.addListener(this.btnDashboardBattery);
         this.btnDashboardPing.setExtractor(new PingStateExtractor(1000));
         this.btnDashboardBattery.setExtractor(new BatteryStateExtractor());
-        captureDaemon.run();
+        new Thread(captureDaemon).start();
     }
 
     /**
