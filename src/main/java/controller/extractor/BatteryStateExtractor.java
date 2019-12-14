@@ -6,6 +6,7 @@
 package controller.extractor;
 
 import controller.ImageProvider;
+import model.i18n.PowerStateI18NBuilder;
 import model.vo.BatteryState;
 import model.vo.MachineState;
 
@@ -41,8 +42,9 @@ public class BatteryStateExtractor implements StateExtractor {
     @Override
     public String getLabel(MachineState state) {
         BatteryState batteryState = getBatteryState(state);
+        String powerState = PowerStateI18NBuilder.getName(batteryState.getState());
         return batteryState == null
                 ? "[DESCONHECIDO]"
-                : String.format("%d %% - %s", batteryState.getLevel(), batteryState.getState().toString());
+                : String.format("%d%% - %s", batteryState.getLevel(), powerState);
     }
 }

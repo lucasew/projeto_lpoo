@@ -62,7 +62,7 @@ public class UIDashboard extends javax.swing.JFrame implements Closeable {
         }
         instancias++;
         initComponents();
-        this.setTitle("Dashboard - Monitor de Recursos");
+        this.setTitle(String.format("%s - Monitor de Recursos", this.machine.getHostname()));
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         WindowCounter.increment();
         this.addWindowListener(new DestroyWindowEventHandler(this));
