@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.chart;
+package view.chart;
 
 import controller.database.MachineController;
-import model.vo.BatteryState;
 import model.vo.Machine;
 import model.vo.MachineState;
-import model.vo.PowerState;
+import model.vo.PingState;
 import org.jfree.data.time.FixedMillisecond;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
@@ -21,14 +20,14 @@ import javax.swing.*;
  *
  * @author lucasew
  */
-public class BatteryChart extends CommonChart {
-    public BatteryChart(Machine machine) {
-        super(machine, "Histórico do uso de bateria", "Uso de bateria");
+public class PingChart extends CommonChart {
+    public PingChart(Machine machine) {
+        super(machine, "Histórico de ping",  "Tempo de ping");
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            BatteryChart example = new BatteryChart(MachineController.getMachine("acer-manjado"));
+            PingChart example = new PingChart(MachineController.getMachine("acer-manjado"));
             example.setSize(800, 400);
             example.setLocationRelativeTo(null);
             example.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -38,21 +37,21 @@ public class BatteryChart extends CommonChart {
 
     @Override
     public TimeSeriesCollection buildDataset() {
-        final TimeSeries series = new TimeSeries("Bateria");
-        final TimeSeries isCarregando = new TimeSeries("Está carregando?");
+        final TimeSeries series = new TimeSeries("Ping");
+        final TimeSeries falhaPing = new TimeSeries("Falhas");
         for (MachineState este : this.amostras) {
+            PingState pingState = este.getPingState();
             FixedMillisecond timestamp = new FixedMillisecond(este.getTimestampState().getTimestamp().getTime());
-            BatteryState batteryState = este.getBatteryState();
-            if (batteryState.getState() == PowerState.Discharging) {
-                isCarregando.add(new TimeSeriesDataItem(timestamp, 0));
+            if (!pingState.isValido()) {
+                falhaPing.add(new TimeSeriesDataItem(timestamp, 100));
             } else {
-                isCarregando.add(new TimeSeriesDataItem(timestamp, 100));
+                falhaPing.add(new TimeSeriesDataItem(timestamp, 0));
             }
-            series.add(new TimeSeriesDataItem(timestamp, batteryState.getLevel()));
+            series.add(new TimeSeriesDataItem(timestamp, pingState.getLatency()));
         }
         final TimeSeriesCollection dataset = new TimeSeriesCollection();
         dataset.addSeries(series);
-        dataset.addSeries(isCarregando);
+        dataset.addSeries(falhaPing);
         return dataset;
     }
 }

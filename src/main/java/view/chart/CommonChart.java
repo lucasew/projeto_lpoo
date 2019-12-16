@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.chart;
-
-import controller.DatabaseController;
+package view.chart;
 
 import java.util.List;
 
@@ -21,7 +19,6 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.time.TimeSeriesCollection;
 
-import javax.persistence.Query;
 import javax.swing.*;
 
 /**

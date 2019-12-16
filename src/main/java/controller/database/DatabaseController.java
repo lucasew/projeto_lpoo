@@ -1,4 +1,4 @@
-package controller;
+package controller.database;
 
 import org.hibernate.HibernateException;
 

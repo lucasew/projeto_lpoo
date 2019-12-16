@@ -1,7 +1,6 @@
 package controller;
 
-import controller.DatabaseController;
-import controller.MachineStateListener;
+import controller.database.DatabaseController;
 import controller.lifecycle.WindowCounter;
 import controller.reporter.Reporter;
 import model.vo.Machine;

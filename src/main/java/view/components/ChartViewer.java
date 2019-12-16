@@ -1,6 +1,6 @@
 package view.components;
 
-import controller.chart.CommonChart;
+import view.chart.CommonChart;
 
 public class ChartViewer implements Runnable {
     private CommonChart chart;

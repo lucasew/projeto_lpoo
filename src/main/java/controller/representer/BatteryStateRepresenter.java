@@ -5,7 +5,7 @@
  */
 package controller.representer;
 
-import controller.ImageProvider;
+import controller.provider.ImageProvider;
 import model.i18n.PowerStateI18NBuilder;
 import model.vo.BatteryState;
 import model.vo.MachineState;

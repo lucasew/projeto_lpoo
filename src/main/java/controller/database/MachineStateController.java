@@ -1,6 +1,5 @@
 package controller.database;
 
-import controller.DatabaseController;
 import model.vo.Machine;
 import model.vo.MachineState;
 

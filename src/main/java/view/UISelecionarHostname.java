@@ -8,8 +8,8 @@ package view;
 import controller.lifecycle.Closeable;
 import controller.lifecycle.DestroyWindowEventHandler;
 import controller.lifecycle.WindowCounter;
-import controller.chart.BatteryChart;
-import controller.chart.PingChart;
+import view.chart.BatteryChart;
+import view.chart.PingChart;
 import controller.database.MachineController;
 
 import java.util.ArrayList;

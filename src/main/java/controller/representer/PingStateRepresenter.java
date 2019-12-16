@@ -5,7 +5,7 @@
  */
 package controller.representer;
 
-import controller.ImageProvider;
+import controller.provider.ImageProvider;
 import model.vo.MachineState;
 import model.vo.PingState;
 
