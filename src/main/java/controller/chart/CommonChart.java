@@ -50,6 +50,9 @@ public abstract class CommonChart extends JFrame implements Closeable {
         XYPlot plot = (XYPlot)chart.getPlot();
 
         ChartPanel panel = new ChartPanel(chart);
+        panel.setMouseWheelEnabled(true);
+        panel.setHorizontalAxisTrace(true);
+        panel.setVerticalAxisTrace(true);
         setContentPane(panel);
 
         this.addWindowListener(new DestroyWindowEventHandler(this));
@@ -58,6 +61,8 @@ public abstract class CommonChart extends JFrame implements Closeable {
     public void close() {
         WindowCounter.decrement();
     }
+
+
 
     public abstract TimeSeriesCollection buildDataset();
 }
