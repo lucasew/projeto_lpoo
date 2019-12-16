@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.extractor;
+package controller.representer;
 
 import controller.ImageProvider;
 import model.vo.MachineState;
@@ -15,10 +15,10 @@ import javax.swing.ImageIcon;
  *
  * @author lucasew
  */
-public class PingStateExtractor implements StateExtractor {
+public class PingStateRepresenter implements StateRepresenter {
     int badNetCriteria;
 
-    public PingStateExtractor(int badNetCriteria) {
+    public PingStateRepresenter(int badNetCriteria) {
         this.badNetCriteria = badNetCriteria;
     }
 

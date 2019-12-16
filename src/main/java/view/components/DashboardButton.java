@@ -6,7 +6,7 @@
 package view.components;
 
 import controller.MachineStateListener;
-import controller.extractor.StateExtractor;
+import controller.representer.StateRepresenter;
 import model.vo.MachineState;
 
 import javax.swing.JButton;
@@ -17,16 +17,16 @@ import javax.swing.JButton;
  */
 public class DashboardButton extends JButton implements MachineStateListener {
 
-    StateExtractor extractor;
+    StateRepresenter extractor;
     public DashboardButton() {
         this.setFont(new java.awt.Font("Dialog", 1, 24));
     }
 
-    public StateExtractor getExtractor() {
+    public StateRepresenter getExtractor() {
         return extractor;
     }
 
-    public void setExtractor(StateExtractor extractor) {
+    public void setExtractor(StateRepresenter extractor) {
         this.extractor = extractor;
     }
 

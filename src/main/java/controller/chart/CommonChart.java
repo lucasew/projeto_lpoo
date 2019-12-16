@@ -9,6 +9,7 @@ import controller.DatabaseController;
 
 import java.util.List;
 
+import controller.database.MachineStateController;
 import controller.lifecycle.Closeable;
 import controller.lifecycle.DestroyWindowEventHandler;
 import controller.lifecycle.WindowCounter;
@@ -35,11 +36,7 @@ public abstract class CommonChart extends JFrame implements Closeable {
         super(String.format("%s: %s", titulo, machine.getHostname()));
         WindowCounter.increment();
         this.machine = machine;
-
-        Query query = DatabaseController.getInstance()
-                .createQuery("select s from MachineState s where machine = :machine_id")
-                .setParameter("machine_id", machine);
-        this.amostras = query.getResultList();
+        this.amostras = MachineStateController.getByMachine(machine);
         System.out.printf("Amostras: %d\n", this.amostras.size());
         JFreeChart chart = ChartFactory.createTimeSeriesChart(
                 null,

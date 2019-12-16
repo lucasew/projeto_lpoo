@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.extractor;
+package controller.representer;
 
 import controller.ImageProvider;
 import model.i18n.PowerStateI18NBuilder;
@@ -16,7 +16,7 @@ import javax.swing.*;
  *
  * @author lucasew
  */
-public class BatteryStateExtractor implements StateExtractor {
+public class BatteryStateRepresenter implements StateRepresenter {
 
     private BatteryState getBatteryState(MachineState state) {
         return state.getBatteryState();
@@ -45,6 +45,6 @@ public class BatteryStateExtractor implements StateExtractor {
         String powerState = PowerStateI18NBuilder.getName(batteryState.getState());
         return batteryState == null
                 ? "[DESCONHECIDO]"
-                : String.format("%d%% - %s", batteryState.getLevel(), powerState);
+                : String.format("%s: %d%%", powerState, batteryState.getLevel());
     }
 }

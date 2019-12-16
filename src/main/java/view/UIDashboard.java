@@ -13,8 +13,8 @@ import controller.lifecycle.WindowCounter;
 import controller.ResourceReporterDaemon;
 import controller.chart.BatteryChart;
 import controller.chart.PingChart;
-import controller.extractor.BatteryStateExtractor;
-import controller.extractor.PingStateExtractor;
+import controller.representer.BatteryStateRepresenter;
+import controller.representer.PingStateRepresenter;
 import controller.reporter.BatteryReporter;
 import controller.reporter.PingReporter;
 import controller.reporter.Reporter;
@@ -79,8 +79,8 @@ public class UIDashboard extends javax.swing.JFrame implements Closeable {
     private void run() {
         resourceReporterDaemon.addListener(this.btnDashboardPing);
         resourceReporterDaemon.addListener(this.btnDashboardBattery);
-        this.btnDashboardPing.setExtractor(new PingStateExtractor(1000));
-        this.btnDashboardBattery.setExtractor(new BatteryStateExtractor());
+        this.btnDashboardPing.setExtractor(new PingStateRepresenter(1000));
+        this.btnDashboardBattery.setExtractor(new BatteryStateRepresenter());
         new Thread(resourceReporterDaemon).start();
     }
 
